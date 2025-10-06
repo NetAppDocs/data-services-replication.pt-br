@@ -9,19 +9,19 @@ indexpage:
   tiles:
   - title: Começar
     links:
-    - title: Saiba mais sobre a replicação do NetApp
+    - title: Saiba mais sobre a NetApp Replication
       url: concept-replication.html
     - title: Configurar replicação de dados
       url: task-replicating-data.html
-  - title: Usar a replicação do NetApp
+  - title: Usar a NetApp Replication
     links:
     - title: Gerenciar replicação de dados
       url: task-managing-replication.html
   - title: Blogs e comunidade
     links:
-    - title: Console NetApp
+    - title: NetApp Console
       url: https://www.netapp.com/console
-    - title: Serviços de dados NetApp
+    - title: NetApp Data Services
       url: https://www.netapp.com/data-services/
     - title: Comunidade NetApp
       url: https://community.netapp.com

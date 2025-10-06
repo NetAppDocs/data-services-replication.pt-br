@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task-managing-replication.html 
 keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, source, destination, schedule, relationship, break, resync, max transfer, maximum transfer rate, rate, transfer rate, reverse resync, status, replication status, disaster recovery, DR, archive, archiving, retention 
-summary: Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados do NetApp Replication. 
+summary: Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados no NetApp Replication. 
 ---
 = Gerenciar a replicação de dados no NetApp Replication
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Depois de configurar a replicação de dados entre dois sistemas, você
 
 
 [role="lead"]
-Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados do NetApp Replication.
+Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados no NetApp Replication.
 
 .Passos
 . link:task-login-replication.html["Efetue login no NetApp Replication"] .
@@ -36,7 +36,7 @@ A tabela a seguir descreve as ações disponíveis:
 | Informação | Mostra detalhes sobre o relacionamento de volume: informações de transferência, informações da última transferência, detalhes sobre o volume e informações sobre a política de proteção atribuída ao relacionamento. 
 
 
-| Quebrar | Quebra o relacionamento entre os volumes de origem e destino e ativa o volume de destino para acesso a dados. Esta opção normalmente é usada quando o volume de origem não pode fornecer dados devido a eventos como corrupção de dados, exclusão acidental ou estado offline.https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["Aprenda como configurar um volume de destino para acesso a dados e reativar um volume de origem na documentação do ONTAP"^] 
+| Quebrar | Quebra o relacionamento entre os volumes de origem e destino e ativa o volume de destino para acesso a dados.  Esta opção normalmente é usada quando o volume de origem não pode fornecer dados devido a eventos como corrupção de dados, exclusão acidental ou estado offline.https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["Aprenda como configurar um volume de destino para acesso a dados e reativar um volume de origem na documentação do ONTAP"^] 
 
 
 | Ressincronizar  a| 
@@ -49,7 +49,7 @@ Aprenda como executar uma ressincronização reversa, que ressincroniza os dados
 
 
 
-| Ressincronização reversa | Inverte as funções dos volumes de origem e destino. O conteúdo do volume de origem original é substituído pelo conteúdo do volume de destino. Isso é útil quando você deseja reativar um volume de origem que ficou offline. Quaisquer dados gravados no volume de origem original entre a última replicação de dados e o momento em que o volume de origem foi desabilitado não são preservados. 
+| Ressincronização reversa | Inverte as funções dos volumes de origem e destino.  O conteúdo do volume de origem original é substituído pelo conteúdo do volume de destino.  Isso é útil quando você deseja reativar um volume de origem que ficou offline.  Quaisquer dados gravados no volume de origem original entre a última replicação de dados e o momento em que o volume de origem foi desabilitado não são preservados. 
 
 
 | Editar agendamento | Permite que você escolha um agendamento diferente para replicação de dados. 
@@ -61,7 +61,7 @@ Aprenda como executar uma ressincronização reversa, que ressincroniza os dados
 | Atualizar | Inicia uma transferência incremental para atualizar o volume de destino. 
 
 
-| Excluir | Exclui o relacionamento de proteção de dados entre os volumes de origem e destino, o que significa que a replicação de dados não ocorre mais entre os volumes. Esta ação não ativa o volume de destino para acesso a dados. 
+| Excluir | Exclui o relacionamento de proteção de dados entre os volumes de origem e destino, o que significa que a replicação de dados não ocorre mais entre os volumes.  Esta ação não ativa o volume de destino para acesso a dados. 
 |===
 
 

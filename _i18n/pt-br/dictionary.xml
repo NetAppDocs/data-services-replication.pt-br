@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="6c88f9e17d9019e00177d64f9db55d2e" category="doc">Suporte para Amazon FSx para ONTAP</block>
+  <block id="59dfc17500b1e0b8d1824eb8b1413080" category="paragraph">Agora você pode replicar dados de um sistema Cloud Volumes ONTAP ou de um cluster ONTAP local para um sistema de arquivos Amazon FSx for ONTAP .</block>
+  <block id="40f78d193b858589ad7df4dd4ce61ad6" category="inline-link">Aprenda a configurar a replicação de dados</block>
+  <block id="51959da1122b405c90c18be52282f18f" category="paragraph"><block ref="1bc1e485e9f9d41e344f0d10f6ad3511" category="inline-link-rx"></block> .</block>
+  <block id="b42dff6de52c55fe0d6831817d6b309d" category="doc">FSx para ONTAP como fonte de dados</block>
+  <block id="0f8ffeac5211fc4e0dfb43c430753ef2" category="paragraph">Agora você pode replicar dados de um sistema de arquivos Amazon FSx para ONTAP para os seguintes destinos:</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="list-text">Amazon FSx para ONTAP</block>
+  <block id="0ef90fde5440e5fbd859cb4d59f76f2c" category="list-text">Cluster ONTAP local</block>
+  <block id="168c5915eb40be2beb0ac04f286489ba" category="doc">FSx para ONTAP para Cloud Volumes ONTAP</block>
+  <block id="6aa89747141f6b258796889b4e964d01" category="paragraph">Agora você pode replicar dados de um sistema de arquivos Amazon FSx for ONTAP para o Cloud Volumes ONTAP.</block>
+  <block id="747ef7cb70bddb84c8ef27217b868e12" category="doc">A BlueXP replication agora é NetApp Replication</block>
+  <block id="57ff97c571d4da9035b6687a3eb97fea" category="paragraph">A BlueXP replication foi renomeada para NetApp Replication.</block>
+  <block id="bc2fe31b1e2682a9a79513d792e9c721" category="section-title">BlueXP agora é NetApp Console</block>
+  <block id="995c8f79a8e07fbd8d519e45d03d6004" category="paragraph">O NetApp Console, criado com base na base aprimorada e reestruturada do BlueXP , fornece gerenciamento centralizado do armazenamento NetApp e do NetApp Data Services em ambientes locais e na nuvem em nível empresarial, fornecendo insights em tempo real, fluxos de trabalho mais rápidos e administração simplificada, que é altamente segura e compatível.</block>
+  <block id="2ef9d641d45afe99b74ad6f9a9f797ad" category="inline-link-macro">Notas de versão do NetApp Console</block>
+  <block id="07a0717927710f1dcb5683cb20238dcb" category="paragraph">Para obter detalhes sobre o que mudou, consulte o<block ref="a3987562479f1a66db4eec298b79e00c" category="inline-link-macro-rx"></block> .</block>
+  <block id="9b93e4b231bbb8d1c7051b84c23381d9" category="summary">Ao contrário das políticas de espelho, as políticas de backup do SnapVault replicam cópias específicas de instantâneos para um volume de destino.  É importante entender como as políticas de backup funcionam se você quiser usar suas próprias políticas em vez das políticas padrão.</block>
+  <block id="13214bc1cee198bcd45ff3058afbe997" category="doc">Saiba mais sobre as políticas de backup usadas no NetApp Replication</block>
+  <block id="d82a2dd63636d76c4ac7235ef9945089" category="paragraph">Ao contrário das políticas de espelho, as políticas de backup (SnapVault) replicam cópias específicas de instantâneos para um volume de destino usando o NetApp Replication.  É importante entender como as políticas de backup funcionam se você quiser usar suas próprias políticas em vez das políticas padrão.</block>
+  <block id="6df849e9b6a98751ab24134d77f38e40" category="section-title">Compreendendo a relação entre rótulos de cópia de snapshot e políticas de backup</block>
+  <block id="39254c75b5bfbd2872343b33d19fae8b" category="paragraph">Uma política de snapshot define como o sistema cria cópias de snapshot de volumes.  A política especifica quando criar as cópias de instantâneo, quantas cópias reter e como rotulá-las.  Por exemplo, um sistema pode criar uma cópia instantânea todos os dias às 00h10, reter as duas cópias mais recentes e rotulá-las como "diárias".</block>
+  <block id="2204cd649631fa42bda6fe0400aa1cd0" category="paragraph">Uma política de backup inclui regras que especificam quais cópias de instantâneos rotuladas devem ser replicadas para um volume de destino e quantas cópias devem ser retidas.  Os rótulos definidos em uma política de backup devem corresponder a um ou mais rótulos definidos em uma política de instantâneo.  Caso contrário, o sistema não poderá replicar nenhuma cópia de instantâneo.</block>
+  <block id="5bc7c9de27975c17950e7fb086105c6b" category="paragraph">Por exemplo, uma política de backup que inclui os rótulos "diário" e "semanal" resulta na replicação de cópias de instantâneos que incluem apenas esses rótulos.  Nenhuma outra cópia de instantâneo é replicada, conforme mostrado na imagem a seguir:</block>
+  <block id="083c26181de8b3b647fa5365a515a238" category="inline-image-macro">Esta ilustração mostra uma política de snapshot, um volume de origem, as cópias de snapshot criadas a partir da política de snapshot e, em seguida, a replicação dessas cópias de snapshot para um volume de destino com base em uma política de backup, que especifica a replicação de cópias de snapshot com os rótulos "diário" e "semanal".</block>
+  <block id="b31733bfcf9651bc6c623260dc3572d3" category="paragraph"><block ref="b31733bfcf9651bc6c623260dc3572d3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="078de5bc4b102703fbb5d5f16eab4ac5" category="section-title">Políticas padrão e políticas personalizadas</block>
+  <block id="794c2bacad35583b2cc20bd0556629ce" category="paragraph">A política de snapshot padrão cria cópias de snapshot por hora, diariamente e semanalmente, retendo seis cópias de snapshot por hora, duas diariamente e duas semanalmente.</block>
+  <block id="a4d82668b58d9042d53ccaa4ade08011" category="paragraph">Você pode facilmente usar uma política de backup padrão com a política de snapshot padrão.  As políticas de backup padrão replicam cópias de instantâneos diárias e semanais, retendo sete cópias de instantâneos diárias e 52 semanais.</block>
+  <block id="148658bf400475bd13a5edab6c870d2f" category="paragraph">Se você criar políticas personalizadas, os rótulos definidos por essas políticas deverão corresponder.  Você pode criar políticas personalizadas usando o Gerenciador de Sistema.</block>
+  <block id="4661e30f7eaa147cc461a5dc6e8c5f87" category="summary">Você pode precisar de ajuda para escolher uma política de replicação ao configurar a replicação de dados no NetApp Console.  Uma política de replicação define como o sistema de armazenamento replica dados de um volume de origem para um volume de destino.</block>
+  <block id="423248a990a1bbd53517291dce77b295" category="doc">Saiba mais sobre as políticas de replicação usadas no NetApp Replication</block>
+  <block id="f3f0bfc0e18f563b5f1cc621d29e15a0" category="paragraph">Você pode precisar de ajuda para escolher uma política de replicação ao configurar a replicação de dados no NetApp Replication.  Uma política de replicação define como o sistema de armazenamento replica dados de um volume de origem para um volume de destino.</block>
+  <block id="e40495076bb4b5e4783f1d1ee0ad0a16" category="section-title">O que as políticas de replicação fazem</block>
+  <block id="f17a16032f2a1e2cbfd643eca94cc227" category="paragraph">O sistema operacional ONTAP cria automaticamente backups chamados cópias instantâneas.  Uma cópia instantânea é uma imagem somente leitura de um volume que captura o estado do sistema de arquivos em um determinado momento.</block>
+  <block id="63ac51a49d2ff385f2b7476ca8ed006d" category="paragraph">Ao replicar dados entre sistemas, você replica cópias de instantâneos de um volume de origem para um volume de destino.  Uma política de replicação especifica quais cópias de instantâneos replicar do volume de origem para o volume de destino.</block>
+  <block id="85fff253f12e639aac3437b2c24d5139" category="admonition">As políticas de replicação também são chamadas de políticas de _proteção_ porque são alimentadas pelas tecnologias SnapMirror e SnapVault , que fornecem proteção de recuperação de desastres e backup e recuperação de disco para disco.</block>
+  <block id="bb372425f15e8836c2329c9522d23e0d" category="paragraph">A imagem a seguir mostra a relação entre cópias de snapshot e políticas de replicação:</block>
+  <block id="e0ac84556326fcf07bd4ae89b2d8798d" category="inline-image-macro">Esta ilustração mostra cópias de instantâneo em um volume de origem e uma política de replicação que especifica a replicação de todas ou cópias de instantâneo específicas do volume de origem para o volume de destino.</block>
+  <block id="02151274ad2d15ca818ebb7d3c7a9741" category="paragraph"><block ref="02151274ad2d15ca818ebb7d3c7a9741" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0f237b0feffecdddaf6649c2d6d7809a" category="section-title">Tipos de políticas de replicação</block>
+  <block id="ef8a1d695c35e57928d4b85c35185a8a" category="paragraph">Existem três tipos de políticas de replicação:</block>
+  <block id="7eb82ee86b53640b74d2920076e847cd" category="list-text">Uma política _Mirror_ replica cópias de snapshots recém-criadas para um volume de destino.</block>
+  <block id="e780f422437735e5df21f41220f74a0a" category="paragraph">Você pode usar essas cópias de instantâneo para proteger o volume de origem em preparação para recuperação de desastres ou para replicação de dados única.  Você pode ativar o volume de destino para acesso aos dados a qualquer momento.</block>
+  <block id="3231c0ac719fb899c8910953b798638f" category="list-text">Uma política de _Backup_ replica cópias específicas de instantâneos para um volume de destino e normalmente as retém por um período de tempo mais longo do que você faria no volume de origem.</block>
+  <block id="ba2e5673981bb27a056ef05366f490cf" category="paragraph">Você pode restaurar dados dessas cópias de instantâneos quando os dados forem corrompidos ou perdidos e mantê-los para conformidade com padrões e outros propósitos relacionados à governança.</block>
+  <block id="264d1d85979e565f376768c29ac5980a" category="list-text">Uma política de _Espelho e Backup_ fornece recuperação de desastres e retenção de longo prazo.</block>
+  <block id="c5e319c770118f998f576ebb9b10069b" category="paragraph">Cada sistema inclui uma política padrão de Espelho e Backup, que funciona bem em muitas situações.  Se você achar que precisa de políticas personalizadas, você pode criar as suas próprias usando o Gerenciador de Sistemas.</block>
+  <block id="776e818527a0aba48ff11fb3a6a26e3a" category="paragraph">As imagens a seguir mostram a diferença entre as políticas de Espelho e Backup.  Uma política de espelho espelha as cópias de instantâneo disponíveis no volume de origem.</block>
+  <block id="78c3d78f2d488203e854f7d2c1e8433b" category="inline-image-macro">Esta ilustração mostra cópias de instantâneo em um volume de origem e um volume de destino espelhado que espelha o volume de origem.</block>
+  <block id="5f5b8dbd7933654721c89d277e8bc025" category="paragraph"><block ref="5f5b8dbd7933654721c89d277e8bc025" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="37ed5bf13e434da8d711618e2c378619" category="paragraph">Uma política de backup normalmente retém cópias de instantâneos por mais tempo do que elas são retidas no volume de origem:</block>
+  <block id="aeed39df6fe9cac3645e90f6149dff93" category="inline-image-macro">Esta ilustração mostra cópias de instantâneo em um volume de origem e um volume de destino de backup que inclui mais cópias de instantâneo porque o SnapVault retém cópias de instantâneo para retenção de longo prazo.</block>
+  <block id="e1d008e588d17add4fa05abba6ed4190" category="paragraph"><block ref="e1d008e588d17add4fa05abba6ed4190" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aeeec0576922eb4490b5fabadc6c4e36" category="summary">O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que você tenha alta disponibilidade de dados e rápida replicação de dados em ambientes virtuais e tradicionais.  Quando você replica dados para sistemas de armazenamento NetApp e atualiza continuamente os dados secundários, seus dados são mantidos atualizados e permanecem disponíveis sempre que você precisar deles. Não são necessários servidores de replicação externos.</block>
+  <block id="5ed06c1d3c0764768c56fa420d696188" category="doc">Saiba mais sobre a NetApp Replication</block>
+  <block id="85efdfd389ac173deb467cd0ea30bdbf" category="paragraph">O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que você tenha alta disponibilidade de dados e rápida replicação de dados em ambientes virtuais e tradicionais.  Ao replicar dados para sistemas de armazenamento NetApp usando o NetApp Replication e atualizar continuamente os dados secundários, seus dados são mantidos atualizados e permanecem disponíveis sempre que você precisar deles. Não são necessários servidores de replicação externos.</block>
+  <block id="3c031b939f6ec312ee601d021e7a6644" category="section-title">NetApp Console</block>
+  <block id="84082264837e9806d736236151badff0" category="paragraph">A NetApp Replication pode ser acessada por meio do NetApp Console.</block>
+  <block id="0a0979a6d279475a420ea5c279943daa" category="paragraph">O NetApp Console fornece gerenciamento centralizado de serviços de armazenamento e dados da NetApp em ambientes locais e na nuvem em nível empresarial. O Console é necessário para acessar e usar os serviços de dados do NetApp . Como uma interface de gerenciamento, ele permite que você gerencie muitos recursos de armazenamento a partir de uma única interface. Os administradores do console podem controlar o acesso ao armazenamento e aos serviços de todos os sistemas da empresa.</block>
+  <block id="7118a6b22768dabe4720d84710ea1e43" category="paragraph">Você não precisa de uma licença ou assinatura para começar a usar o NetApp Console e só incorrerá em cobranças quando precisar implantar agentes do Console na sua nuvem para garantir a conectividade com seus sistemas de armazenamento ou serviços de dados do NetApp . No entanto, alguns serviços de dados da NetApp acessíveis pelo Console são licenciados ou baseados em assinatura.</block>
+  <block id="4d0bb76e32bfe205406b10f5dfa9d47b" category="paragraph">Saiba mais sobre o<block ref="e6368f2dd82be1e975475a1098863578" category="inline-link-rx"></block> .</block>
+  <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">Características</block>
+  <block id="4d8208136280cbaba3cab05e5996a3a8" category="list-text">Replique dados entre sistemas de armazenamento ONTAP para dar suporte a backup e recuperação de desastres na nuvem ou entre nuvens.</block>
+  <block id="58598c037819ab3e58b8ee6d0d634246" category="list-text">Garanta a confiabilidade do seu ambiente de DR com alta disponibilidade.</block>
+  <block id="6c12db213eb53a8ef7d470254e0395be" category="list-text">A replicação eficiente em nível de bloco entre armazenamento ONTAP é rápida e eficiente, com pontos de recuperação granulares para DR e backup.</block>
+  <block id="20b4f77bd00b4f63a49ec8e08f3bf6a6" category="section-title">Custo</block>
+  <block id="688db5110be6c3b4687f322f866e3966" category="paragraph">A NetApp não cobra pelo uso do NetApp Replication, mas você precisará verificar com seu provedor de nuvem as taxas de entrada e saída de dados aplicáveis.</block>
+  <block id="933247e0be7796a309cfa4c95bd34938" category="section-title">Sistemas suportados</block>
+  <block id="5029d168fd8eaac94e5fb1b86a3c006c" category="paragraph">O NetApp Replication permite a replicação de dados entre os seguintes tipos de sistemas.</block>
+  <block id="48a431e7da72cf4ddb716b44e3bd3022" category="cell">Sistema de origem</block>
+  <block id="ed82c965d60c0d74a85f7a3ee3c8b83c" category="cell">Sistemas de destino suportados</block>
+  <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="cell">Cloud Volumes ONTAP</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
+  <block id="c17ce6a7cdcb97581c6d5603ec7d447a" category="list-text">Cluster ONTAP local</block>
+  <block id="b553c40a28c07760917a84d00649f7fd" category="section-title">Como funciona a replicação de dados</block>
+  <block id="ab48329b04181ea1425540e3a6fe3fe5" category="paragraph">O NetApp Replication simplifica a replicação de dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Você só precisa identificar o volume de origem e o volume de destino e, em seguida, escolher uma política e um agendamento de replicação.</block>
+  <block id="0a6e3d7b708a2efcacdf12db0f7ef453" category="paragraph">Para o Cloud Volumes ONTAP, o NetApp Replication compra os discos necessários, configura relacionamentos, aplica a política de replicação e, em seguida, inicia a transferência de linha de base entre os volumes.</block>
+  <block id="f2c34e95577ee850c803e71a908cf1ef" category="admonition">A transferência de linha de base inclui uma cópia completa dos dados de origem.  Transferências subsequentes contêm cópias diferenciais dos dados de origem.</block>
+  <block id="cc20b848be9552c96e9f46ed40db533d" category="section-title">Configurações de proteção de dados suportadas</block>
+  <block id="76f60c2fc54480021bad1172edc8cfc9" category="paragraph">O NetApp Replication oferece suporte a configurações de proteção de dados simples, em fanout e em cascata:</block>
+  <block id="c1400343880c81f40f5a3faf804c86ae" category="list-text">Em uma configuração simples, a replicação ocorre do volume A para o volume B.</block>
+  <block id="efec681cbb459f433d2291a71e215461" category="list-text">Em uma configuração fanout, a replicação ocorre do volume A para vários destinos.</block>
+  <block id="7a850141034065e0218996db71a2ef0c" category="list-text">Em uma configuração em cascata, a replicação ocorre do volume A para o volume B e do volume B para o volume C.</block>
+  <block id="e2a73062a43d971014e79321452e41d1" category="section-title">Replique dados usando o NetApp Backup and Recovery</block>
+  <block id="cc6088539286339733631d73fb51774b" category="inline-link">NetApp Backup and Recovery</block>
+  <block id="465534c15eafa57d6bae7e725a2e3ce2" category="paragraph">A partir da versão 3.9.31 do agente NetApp Console , o NetApp Backup and Recovery permite que você replique dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Portanto, se você planeja replicar dados para outros sistemas ONTAP e também deseja criar backups dos mesmos dados para armazenamento de objetos, você pode querer usar<block ref="67fd3aacb3a6ea01de53a75df4c80aa9" category="inline-link-rx"></block> para que você possa gerenciar suas necessidades de proteção de dados com um único serviço.</block>
+  <block id="4731c16d17a906073fd315deea647210" category="paragraph">Atualmente, a funcionalidade a seguir só é suportada no NetApp Replication , não ao usar o recurso de replicação do NetApp Backup and Recovery.</block>
+  <block id="e012112c73378e2a2d1fd1a0fa9c2795" category="list-text">Não há suporte para uma configuração em cascata onde a replicação ocorre do volume A para o volume B e depois do volume B para o volume C.</block>
+  <block id="baf48e0aa2c3928a76f5ae4cfa863af0" category="list-text">Não há suporte para replicação de dados de ou para o FSx para sistemas ONTAP .</block>
+  <block id="0c23616cc33d59b54422397ae3ade277" category="list-text">Não há suporte para criar uma replicação única de um volume.</block>
+  <block id="bec0d307733399aa2dead652fbdca123" category="paragraph">Portanto, se você precisar de alguma dessas funcionalidades, use o NetApp Replication.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Avisos legais</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">Avisos legais fornecem acesso a declarações de direitos autorais, marcas registradas, patentes e muito mais.</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Direitos autorais</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">Marcas Registradas</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, o logotipo da NETAPP e as marcas listadas na página de Marcas Registradas da NetApp são marcas registradas da NetApp, Inc. Outros nomes de empresas e produtos podem ser marcas registradas de seus respectivos proprietários.</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">Patentes</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">Uma lista atual de patentes de propriedade da NetApp pode ser encontrada em:</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">Política de Privacidade</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">Código aberto</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">Os arquivos de aviso fornecem informações sobre direitos autorais e licenças de terceiros usados no software NetApp .</block>
+  <block id="50dbf63cd0ab8144a287e5cd6a0f1de2" category="inline-link">Aviso para o NetApp Console</block>
+  <block id="ca1067b0f577a19a222d6d22081d1d4b" category="paragraph"><block ref="ca1067b0f577a19a222d6d22081d1d4b" category="inline-link-rx"></block></block>
+  <block id="e48486c33f71dc8e173adb6c6fc66485" category="summary">A NetApp fornece suporte ao NetApp Console de diversas maneiras. Há diversas opções gratuitas de autoatendimento disponíveis 24 horas por dia, 7 dias por semana, como artigos da base de conhecimento (KB) e um fórum da comunidade. Seu cadastro no suporte inclui suporte técnico remoto por meio de tickets online.</block>
+  <block id="fabfc25ef8996fd90836e58a4c0b26b6" category="doc">Obter ajuda</block>
+  <block id="bbbc9b55f08bfe80f146b5207bdb7728" category="paragraph">A NetApp oferece suporte para o BlueXP e seus serviços de nuvem de diversas maneiras. Oferecemos amplas opções gratuitas de autossuporte 24 horas por dia, 7 dias por semana, como artigos da base de conhecimento (KB) e um fórum da comunidade. Seu cadastro no suporte inclui suporte técnico remoto por meio de tickets online.</block>
+  <block id="522cbb900314aeb84eb5a961c5f94672" category="section-title">Obtenha suporte para um serviço de arquivo de provedor de nuvem</block>
+  <block id="f6185bb12f5e53c800be8cda7fbca65b" category="paragraph">Para obter suporte técnico relacionado a um serviço de arquivo do provedor de nuvem, sua infraestrutura ou qualquer solução que use o serviço, consulte "Obter ajuda" na documentação do BlueXP para esse produto.</block>
+  <block id="9d06990508d25d367d9158c6558eb9c8" category="list-text"><block ref="9d06990508d25d367d9158c6558eb9c8" category="inline-link-macro-rx"></block></block>
+  <block id="7450cfde7058dc5e1f7909d0280fd7ae" category="inline-link-macro">Azure NetApp Files</block>
+  <block id="2e0c742f4616eb27b5b7646aa790edfe" category="list-text"><block ref="2e0c742f4616eb27b5b7646aa790edfe" category="inline-link-macro-rx"></block></block>
+  <block id="1215f8190533dfdf63d2224a6d88266f" category="inline-link-macro">Google Cloud NetApp Volumes</block>
+  <block id="cb4bf32603c89d08cad17e7e7dd302f2" category="list-text"><block ref="cb4bf32603c89d08cad17e7e7dd302f2" category="inline-link-macro-rx"></block></block>
+  <block id="3880ae5df9fdc4d0fc4a6d00a2239530" category="paragraph">Para receber suporte técnico específico para o BlueXP e suas soluções e serviços de armazenamento, use as opções de suporte descritas abaixo.</block>
+  <block id="edd15fbeb7b2dffa163336ecd4f3e80c" category="section-title">Use opções de autoapoio</block>
+  <block id="5e4b821a1a82558dead1ef6961e90666" category="paragraph">Estas opções estão disponíveis gratuitamente, 24 horas por dia, 7 dias por semana:</block>
+  <block id="5b6cf869265c13af8566f192b4ab3d2a" category="list-text">Documentação</block>
+  <block id="a4a6c2ea0078252eac2d74ef3e6c917c" category="paragraph">A documentação do BlueXP que você está visualizando no momento.</block>
+  <block id="19111351b69b6b15668130b38b7f6038" category="inline-link">Base de conhecimento</block>
+  <block id="942c9249796cf6b78c981ebf15195809" category="list-text"><block ref="942c9249796cf6b78c981ebf15195809" category="inline-link-rx"></block></block>
+  <block id="9a3db1abe5491d0eb9bb5d125981356c" category="paragraph">Pesquise na base de conhecimento do BlueXP para encontrar artigos úteis para solucionar problemas.</block>
+  <block id="14526abd8bda5af347775025cd5342cf" category="inline-link">Comunidades</block>
+  <block id="410fdb9caa9c64da2ff3f88f4836960d" category="list-text"><block ref="410fdb9caa9c64da2ff3f88f4836960d" category="inline-link-rx"></block></block>
+  <block id="00c5fef3bb9d593ae96bf5d2ee60354a" category="paragraph">Junte-se à comunidade BlueXP para acompanhar discussões em andamento ou criar novas.</block>
+  <block id="d88bacf2a9fdcbbc844edcba97c34e30" category="section-title">Crie um caso com o suporte da NetApp</block>
+  <block id="82812db645b6ff5e9c2a24ddfb66c8d6" category="paragraph">Além das opções de autossuporte acima, você pode trabalhar com um especialista em suporte da NetApp para resolver quaisquer problemas após ativar o suporte.</block>
+  <block id="8fece025a1a8fef7018449bf104a2527" category="list-title">Antes de começar</block>
+  <block id="920fe1428c19533eda6222fe7e58efbe" category="inline-link">Aprenda a gerenciar credenciais associadas ao seu login BlueXP</block>
+  <block id="e1d2e1a634647fd631081bc4f6f8e523" category="list-text">Para usar o recurso *Criar um caso*, você deve primeiro associar suas credenciais do site de suporte da NetApp ao seu login do BlueXP .<block ref="2a0d8b66ca9e99d023b48cf25f40fb12" category="inline-link-rx"></block> .</block>
+  <block id="e49aa971c20ec071f1b5bbc3c7266769" category="list-text">Se você estiver abrindo um caso para um sistema ONTAP que tenha um número de série, sua conta NSS deverá estar associada ao número de série desse sistema.</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">Passos</block>
+  <block id="7fe6981833e8fe7fd89e0a99a55573da" category="list-text">No BlueXP, selecione *Ajuda &gt; Suporte*.</block>
+  <block id="08d96fdd1a845d80db99e6e1dffb8bc7" category="list-text">Na página *Recursos*, escolha uma das opções disponíveis em Suporte Técnico:</block>
+  <block id="6a1b74969231967ed071d465206b15c7" category="list-text">Selecione *Ligue para nós* se quiser falar com alguém por telefone. Você será direcionado para uma página no netapp.com que lista os números de telefone para os quais você pode ligar.</block>
+  <block id="d65a2a6fc9caad1867728d4382eeb989" category="list-text">Selecione *Criar um caso* para abrir um tíquete com um especialista de suporte da NetApp :</block>
+  <block id="d63bf50426f4c712554faec55b30c548" category="list-text">*Serviço*: Selecione o serviço ao qual o problema está associado. Por exemplo, BlueXP quando específico para um problema de suporte técnico com fluxos de trabalho ou funcionalidade dentro do serviço.</block>
+  <block id="2e50c5f85523f0aba9ff2db10f18279c" category="list-text">*Ambiente de trabalho*: Se aplicável ao armazenamento, selecione * Cloud Volumes ONTAP* ou *On-Prem* e, em seguida, o ambiente de trabalho associado.</block>
+  <block id="98d90e398fc56688ddc647e5f49075ec" category="paragraph">A lista de ambientes de trabalho está dentro do escopo da organização BlueXP (ou conta), projeto (ou espaço de trabalho) e Conector que você selecionou no banner superior do serviço.</block>
+  <block id="e6f29fb3c7636dc0040600dd0e84bb79" category="list-text">*Prioridade do caso*: escolha a prioridade do caso, que pode ser Baixa, Média, Alta ou Crítica.</block>
+  <block id="835eb4008e97c2a7f69bbb2725285e34" category="paragraph">Para saber mais detalhes sobre essas prioridades, passe o mouse sobre o ícone de informações ao lado do nome do campo.</block>
+  <block id="0f7d9319c95a8be1492e74601c4b3259" category="list-text">*Descrição do problema*: Forneça uma descrição detalhada do seu problema, incluindo quaisquer mensagens de erro aplicáveis ou etapas de solução de problemas que você executou.</block>
+  <block id="002c6f26fb01affb37b8cf3cef7a1fb0" category="list-text">*Endereços de e-mail adicionais*: insira endereços de e-mail adicionais se quiser informar outra pessoa sobre esse problema.</block>
+  <block id="c7f5c1a75acc58c6f004efc0ce1eba09" category="list-text">*Anexo (Opcional)*: Carregue até cinco anexos, um de cada vez.</block>
+  <block id="bfa80e7aaad6da353b431bff3a0e12d6" category="paragraph">Os anexos são limitados a 25 MB por arquivo. As seguintes extensões de arquivo são suportadas: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx e csv.</block>
+  <block id="baaf0e61add7d12cf8d12e023d5aef18" category="inline-image-macro">Uma captura de tela do formulário Criar um caso que permite criar um caso com o Suporte da NetApp .</block>
+  <block id="509259be6d5e15d8959f705cbe0cbcc1" category="paragraph"><block ref="509259be6d5e15d8959f705cbe0cbcc1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bd965e38a0c9cf27aa1bde099308e23f" category="paragraph-title">Depois que você terminar</block>
+  <block id="18f487556417bb6d9721a7005ae097c9" category="paragraph">Um pop-up aparecerá com o número do seu caso de suporte. Um especialista em suporte da NetApp analisará seu caso e entrará em contato com você em breve.</block>
+  <block id="0ff9b4b8684b9e03c9c1e1320935eae3" category="paragraph">Para obter um histórico dos seus casos de suporte, você pode selecionar *Configurações &gt; Linha do tempo* e procurar por ações chamadas "criar caso de suporte". Um botão na extrema direita permite expandir a ação para ver detalhes.</block>
+  <block id="5c56753585e89a84941bb3a78bc681af" category="paragraph">É possível que você encontre a seguinte mensagem de erro ao tentar criar um caso:</block>
+  <block id="a30f69ab0ec85d427a3e8835713525bd" category="paragraph">"Você não está autorizado a criar um caso contra o serviço selecionado"</block>
+  <block id="c7b7a5ae9f37fd7d24e4d641b9186fe9" category="paragraph">Esse erro pode significar que a conta NSS e a empresa registrada à qual ela está associada não são a mesma empresa registrada para o número de série da conta BlueXP (por exemplo, 960xxxx) ou o número de série do ambiente de trabalho. Você pode buscar assistência usando uma das seguintes opções:</block>
+  <block id="e01df0b4dfd95eba2c59333419e4fac6" category="list-text">Use o chat do produto</block>
+  <block id="639be990cfca56ab4b63685d8bacd437" category="list-text">Envie um caso não técnico em<block ref="2298f47e4dad19a3156da7ce6116d9b1" category="inline-link-rx"></block></block>
+  <block id="898e35e1a4bf4b025c3edec879439b08" category="section-title">Gerencie seus casos de suporte (visualização)</block>
+  <block id="8b74b053fbeeff5c3b6f4991cb1d028d" category="paragraph">Você pode visualizar e gerenciar casos de suporte ativos e resolvidos diretamente do BlueXP. Você pode gerenciar os casos associados à sua conta NSS e à sua empresa.</block>
+  <block id="394ef093ad3259b9ff0fe7406f015b83" category="paragraph">O gerenciamento de casos está disponível como uma prévia. Planejamos refinar essa experiência e adicionar melhorias em versões futuras. Envie-nos seu feedback usando o chat do produto.</block>
+  <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="paragraph">Observe o seguinte:</block>
+  <block id="5e4e7672ec2ba2b8a763da7f6714e212" category="list-text">O painel de gerenciamento de casos na parte superior da página oferece duas visualizações:</block>
+  <block id="01c3ffea552d74a5ae390b10e71a1f26" category="list-text">A visualização à esquerda mostra o total de casos abertos nos últimos 3 meses pela conta NSS do usuário que você forneceu.</block>
+  <block id="e3b6c09a5686233f72ce1ea60a1eb088" category="list-text">A visualização à direita mostra o total de casos abertos nos últimos 3 meses no nível da sua empresa com base na sua conta de usuário NSS.</block>
+  <block id="b19b168cc8a2b8c984465e140256b3a2" category="paragraph">Os resultados na tabela refletem os casos relacionados à exibição que você selecionou.</block>
+  <block id="56dcadeee6b0e5c47a52673f9b5a0bb3" category="list-text">Você pode adicionar ou remover colunas de interesse e filtrar o conteúdo de colunas como Prioridade e Status. Outras colunas fornecem apenas recursos de classificação.</block>
+  <block id="6f936762e1223311f031685422fcd3a4" category="paragraph">Veja as etapas abaixo para mais detalhes.</block>
+  <block id="b14929795a61440e9b4ec9f8a4885ae3" category="list-text">Em cada caso, oferecemos a possibilidade de atualizar notas do caso ou fechar um caso que ainda não esteja no status Fechado ou Pendente Fechado.</block>
+  <block id="0a4050ac39772e9281a9aba225254bf8" category="list-text">Selecione *Gerenciamento de casos* e, se solicitado, adicione sua conta NSS ao BlueXP.</block>
+  <block id="d8ce1865cf1fe3cffd60300b4b86ad63" category="paragraph">A página *Gerenciamento de casos* mostra casos abertos relacionados à conta NSS associada à sua conta de usuário BlueXP . Esta é a mesma conta NSS que aparece no topo da página *Gerenciamento NSS*.</block>
+  <block id="2ae5ae78bdb2d222f15fd8e89248709c" category="list-text">Modifique opcionalmente as informações exibidas na tabela:</block>
+  <block id="1d39d3ab518e1e3f16cbafb2a56e1fd9" category="list-text">Em *Casos da organização*, selecione *Exibir* para visualizar todos os casos associados à sua empresa.</block>
+  <block id="059e856250b59be3069246887b74a23c" category="list-text">Modifique o intervalo de datas escolhendo um intervalo de datas exato ou escolhendo um período de tempo diferente.</block>
+  <block id="dfb3764bce2548df4e06357403f9c7d0" category="inline-image-macro">Uma captura de tela da opção acima da tabela na página Gerenciamento de casos que permite que você escolha um intervalo de datas exato ou os últimos 7 dias, 30 dias ou 3 meses.</block>
+  <block id="0972db30d942fdb65d1732e6e84bde99" category="paragraph"><block ref="0972db30d942fdb65d1732e6e84bde99" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a1bb576be9e5a356290f231efb51b3f5" category="list-text">Filtrar o conteúdo das colunas.</block>
+  <block id="3753f10a59e21f58b30e3e67d416453e" category="inline-image-macro">Uma captura de tela da opção de filtro na coluna Status que permite filtrar casos que correspondem a um status específico, como Ativo ou Fechado.</block>
+  <block id="cb6a777dd3c6e43b0dc441d38519d219" category="paragraph"><block ref="cb6a777dd3c6e43b0dc441d38519d219" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1c6ea5ef583389e18e7d7bda70beaa71" category="inline-image-macro">O ícone de mais que aparece na tabela</block>
+  <block id="cdf14d2156528231a5dbd12ad5c95d3f" category="list-text">Altere as colunas que aparecem na tabela selecionando<block ref="b574dd55d604ddb721d869a0fc302007" category="inline-image-macro-rx" type="image"></block> e então escolher as colunas que você gostaria de exibir.</block>
+  <block id="370b44009f1b82d0b6b178bb80cc62fa" category="inline-image-macro">Uma captura de tela que mostra as colunas que você pode mostrar na tabela.</block>
+  <block id="e65065c4fd326b9f3a1eeb9453c30d73" category="paragraph"><block ref="e65065c4fd326b9f3a1eeb9453c30d73" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ad0ae9ea1f2e8d973a9a0f6bb169f494" category="inline-image-macro">Um ícone com três pontos que aparece na última coluna da tabela</block>
+  <block id="348552521b849746260fe8d296d34c15" category="list-text">Gerencie um caso existente selecionando<block ref="566c029d89e7d5421080767a37bf443e" category="inline-image-macro-rx" type="image"></block> e selecionando uma das opções disponíveis:</block>
+  <block id="6d9dd74e7709ef802d299966f7898f6b" category="list-text">*Ver caso*: Veja detalhes completos sobre um caso específico.</block>
+  <block id="8e6b52a532a4fbbfc98dca3ebfa5f1e6" category="list-text">*Atualizar notas do caso*: Forneça detalhes adicionais sobre seu problema ou selecione *Carregar arquivos* para anexar até no máximo cinco arquivos.</block>
+  <block id="bb6d5d351525342dd6b3cf4d15b6f298" category="list-text">*Fechar caso*: Forneça detalhes sobre o motivo pelo qual você está fechando o caso e selecione *Fechar caso*.</block>
+  <block id="e93217b2f709a398ce3c0fb753beb05f" category="inline-image-macro">Uma captura de tela que mostra as ações que você pode realizar após selecionar o menu na última coluna da tabela.</block>
+  <block id="2ea260929e27ffcb623c8aa35689bd18" category="paragraph"><block ref="2ea260929e27ffcb623c8aa35689bd18" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="356bfec639149f88d46b9360aaf82789" category="summary">Use o NetApp Console para efetuar login no NetApp Replication.</block>
+  <block id="1b8ced9c4e8c56b65fcb6a4dfa719297" category="doc">Efetue login no NetApp Replication</block>
+  <block id="8e917942a77709dfd28c155f42a97553" category="inline-link">Saiba mais sobre como fazer login</block>
+  <block id="4c318b3352fefcf1bd1ce650cc94ca4e" category="paragraph">Para fazer login no Console, você pode usar suas credenciais do Site de Suporte da NetApp ou pode se inscrever para um login na nuvem da NetApp usando seu e-mail e uma senha.<block ref="192dac3a1352f6134fa7409c0b073570" category="inline-link-rx"></block> .</block>
+  <block id="6a65fb509b9c682f9df5eb122484e2f7" category="list-text">Abra um navegador da web e vá para o<block ref="d6205946f936217747639e85e1340e8f" category="inline-link-rx"></block> .</block>
+  <block id="0daac1b9cd4c3a240bf2f6b44ba178a1" category="paragraph">A página de login do NetApp Console é exibida.</block>
+  <block id="4a43cddfeeabba4570c14c252dec0bd1" category="list-text">Efetue login no Console.</block>
+  <block id="771a03d32a408b4653c26249844b6885" category="list-text">Na navegação à esquerda do Console, selecione *Proteção* &gt; *Replicação*.</block>
+  <block id="fad0f00219691e250f806aa4e6fda7a3" category="summary">Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados no NetApp Replication.</block>
+  <block id="1d14714a562273c31a3aa99c9f0c4a3f" category="doc">Gerenciar a replicação de dados no NetApp Replication</block>
+  <block id="b066406edb729146f43744df2852f1cd" category="list-text"><block ref="665f1db0ee19fa6751ad5f37fc96ca64" category="inline-link-macro-rx"></block> .</block>
+  <block id="775f5846d28de12857c9c89ae5d4a6e1" category="list-text">Revise o status dos relacionamentos de replicação de dados para verificar se eles estão íntegros.</block>
+  <block id="384cf3526eba01b7701f7fde08ba751e" category="admonition">Se o status de um relacionamento for inativo e o estado do espelho não for inicializado, você deverá inicializar o relacionamento do sistema de destino para que a replicação de dados ocorra de acordo com o cronograma definido.  Você pode inicializar o relacionamento usando o Gerenciador do Sistema ou a interface de linha de comando (CLI).  Esses estados podem aparecer quando o sistema de destino falha e depois volta a ficar online.</block>
+  <block id="d869f083beb7cac7876401bafaeba676" category="list-text">Selecione o menu de ações para um relacionamento de volume e escolha uma das ações disponíveis.</block>
+  <block id="7e237ab45b209987e5eb6464c44abac5" category="paragraph">A tabela a seguir descreve as ações disponíveis:</block>
+  <block id="004bf6c9a40003140292e97330236c53" category="cell">Ação</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">Descrição</block>
+  <block id="a82be0f551b8708bc08eb33cd9ded0cf" category="cell">Informação</block>
+  <block id="d94a71d39d4b5957a9cb08d7b25dc8d1" category="cell">Mostra detalhes sobre o relacionamento de volume: informações de transferência, informações da última transferência, detalhes sobre o volume e informações sobre a política de proteção atribuída ao relacionamento.</block>
+  <block id="e4c38d6d45baf080943d323dd51a2ce8" category="cell">Quebrar</block>
+  <block id="f0cd8087559cf56fb0d34726dbd85d38" category="inline-link">Aprenda como configurar um volume de destino para acesso a dados e reativar um volume de origem na documentação do ONTAP</block>
+  <block id="eded94fe54d9a9c86f0d510180c58a5d" category="cell">Quebra o relacionamento entre os volumes de origem e destino e ativa o volume de destino para acesso a dados.  Esta opção normalmente é usada quando o volume de origem não pode fornecer dados devido a eventos como corrupção de dados, exclusão acidental ou estado offline.<block ref="7a7ac6ccb9be4e5f4f0b719a95b68333" category="inline-link-rx"></block></block>
+  <block id="45ada1a8b02e7bf10200aedcf56d13c8" category="cell">Ressincronizar</block>
+  <block id="56f83d4dac34839a8f3a283bafd276e8" category="paragraph">Restabelece um relacionamento interrompido entre volumes e retoma a replicação de dados de acordo com o cronograma definido.</block>
+  <block id="f43fdb6878de7980d30d532ea44e0baf" category="admonition">Quando você ressincroniza os volumes, o conteúdo do volume de destino é substituído pelo conteúdo do volume de origem.</block>
+  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link">Documentação do ONTAP</block>
+  <block id="e990be7a16b6b4357342c71daaf2bbca" category="paragraph">Aprenda como executar uma ressincronização reversa, que ressincroniza os dados do volume de destino para o volume de origem, acesse o<block ref="ab01f841914c89d9d9ffbe330b1e0c0f" category="inline-link-rx"></block> .</block>
+  <block id="fb1729afce23e1bd1840f0ba32ef8e91" category="cell">Ressincronização reversa</block>
+  <block id="fdd14ac0ba0eae4cebe22311577994f3" category="cell">Inverte as funções dos volumes de origem e destino.  O conteúdo do volume de origem original é substituído pelo conteúdo do volume de destino.  Isso é útil quando você deseja reativar um volume de origem que ficou offline.  Quaisquer dados gravados no volume de origem original entre a última replicação de dados e o momento em que o volume de origem foi desabilitado não são preservados.</block>
+  <block id="67d85e3bd91876173776dc6f189ff7ac" category="cell">Editar agendamento</block>
+  <block id="6f95f7aca41a993373d4a1096d61c7f0" category="cell">Permite que você escolha um agendamento diferente para replicação de dados.</block>
+  <block id="369e2ad9fb57b7fa6aea36dd7e48cf58" category="cell">Editar Taxa Máxima de Transferência</block>
+  <block id="35dbbeea8ab5e735a28c3b41ed25bca0" category="cell">Permite que você edite a taxa máxima (em quilobytes por segundo) na qual os dados podem ser transferidos.</block>
+  <block id="06933067aafd48425d67bcb01bba5cb6" category="cell">Atualizar</block>
+  <block id="16685aa35f9f2843a357407642b0d7d9" category="cell">Inicia uma transferência incremental para atualizar o volume de destino.</block>
+  <block id="f2a6c498fb90ee345d997f888fce3b18" category="cell">Excluir</block>
+  <block id="d1325501ee070fd499d61b4cb3ec234d" category="cell">Exclui o relacionamento de proteção de dados entre os volumes de origem e destino, o que significa que a replicação de dados não ocorre mais entre os volumes.  Esta ação não ativa o volume de destino para acesso a dados.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">Resultado</block>
+  <block id="63fb159a291d0f518004be82ab44509b" category="paragraph">Depois de selecionar uma ação, o NetApp Replication atualiza o relacionamento ou a programação.</block>
+  <block id="d250467f9102169f504e016ab78b6cda" category="summary">Você pode replicar dados entre sistemas ONTAP escolhendo uma replicação de dados única para transferência de dados ou um agendamento recorrente para recuperação de desastres ou retenção de longo prazo.  Por exemplo, você pode configurar a replicação de dados de um sistema ONTAP local para o Cloud Volumes ONTAP para recuperação de desastres.</block>
+  <block id="79d6e23629075ae4f230f2a003115b67" category="doc">Configurar replicação de dados no NetApp Replication</block>
+  <block id="92e912ca8707f6f34130e1b10d2d138b" category="paragraph">Usando o NetApp Replication, replique dados entre sistemas ONTAP escolhendo uma replicação de dados única para transferência de dados ou um agendamento recorrente para recuperação de desastres ou retenção de longo prazo.  Por exemplo, você pode configurar a replicação de dados de um sistema ONTAP local para o Cloud Volumes ONTAP para recuperação de desastres.</block>
+  <block id="46ebfd1e0393caa0f34b574489afb56f" category="section-title">Etapa 1: Revisar os requisitos de replicação de dados</block>
+  <block id="3f5c98f2da3fd65fbbfa955b13a433ab" category="paragraph">Antes de poder replicar dados, você deve confirmar se os requisitos específicos são atendidos para o Cloud Volumes ONTAP, clusters ONTAP locais ou Amazon FSx for ONTAP.</block>
+  <block id="b31df235e8aee38fd08600c353af2b52" category="list-text">sistemas</block>
+  <block id="347a6d5ba577ca1fc3fbf1c018c62c3e" category="list-text">Se você ainda não fez isso, precisa criar os sistemas para a origem e o destino no relacionamento de replicação de dados.</block>
+  <block id="5df55e7de34e04e3fbd5d9ffd4e44939" category="inline-link">Crie um sistema Amazon FSx para ONTAP</block>
+  <block id="d34fada56fcc1f4d30c60c0ad44e815e" category="list-text"><block ref="d34fada56fcc1f4d30c60c0ad44e815e" category="inline-link-rx"></block></block>
+  <block id="e39cba49c543836a082dbf6c0bb0a5bb" category="inline-link">Crie um sistema Cloud Volumes ONTAP</block>
+  <block id="3448435dc52f8b9c3c66868becfbdf9c" category="list-text"><block ref="3448435dc52f8b9c3c66868becfbdf9c" category="inline-link-rx"></block></block>
+  <block id="6c0fb6078ec778ca2319e375a19e994b" category="inline-link">Adicionar sistemas Cloud Volumes ONTAP existentes</block>
+  <block id="8fdf2adbca771b61e226157cc48ae918" category="list-text"><block ref="8fdf2adbca771b61e226157cc48ae918" category="inline-link-rx"></block></block>
+  <block id="a1ebf612d281c8e7fb16bbfa253b9627" category="inline-link">Descubra os clusters ONTAP</block>
+  <block id="c42ed38279c50e4c5755f93ea09a9661" category="list-text"><block ref="c42ed38279c50e4c5755f93ea09a9661" category="inline-link-rx"></block></block>
+  <block id="3fbe74eae84714fcfdd21edafe54f77f" category="list-text">Requisitos de versão</block>
+  <block id="5ab11c0b1a095a5aa6623bf54430fb4b" category="list-text">Você deve verificar se os volumes de origem e destino estão executando versões ONTAP compatíveis antes de replicar os dados.</block>
+  <block id="49a1e754247eba0034ec2a2b3dea46b0" category="inline-link">Ver versões ONTAP compatíveis para relacionamentos SnapMirror</block>
+  <block id="b8c6e83fa255fcfab352a5b54339fdb8" category="paragraph"><block ref="b8c6e83fa255fcfab352a5b54339fdb8" category="inline-link-rx"></block></block>
+  <block id="fe6efbb95f9a85a506ca5269c7f8ff90" category="list-text">Requisitos específicos do Cloud Volumes ONTAP</block>
+  <block id="889d45df47a3ead91725048aa6da9442" category="list-text">O grupo de segurança da instância deve incluir as regras de entrada e saída necessárias: especificamente, regras para ICMP e portas 11104 e 11105.</block>
+  <block id="56a907169092bf547ac6f962beae2e1a" category="paragraph">Essas regras estão incluídas no grupo de segurança predefinido.</block>
+  <block id="c08b01fe5c09939cdbabcb370734dad8" category="list-text">Para replicar dados entre dois sistemas Cloud Volumes ONTAP em sub-redes diferentes, as sub-redes devem ser roteadas juntas (essa é a configuração padrão).</block>
+  <block id="d5c8c6b85589a3255105df8b8a5a8e77" category="list-text">Para replicar dados entre dois sistemas Cloud Volumes ONTAP em diferentes provedores de nuvem, você deve ter uma conexão VPN entre as redes virtuais.</block>
+  <block id="4f98fe32c8059fcb89742310b7175e7f" category="list-text">Requisitos específicos para clusters ONTAP</block>
+  <block id="8c4a805dde66a7461e7760fe982d066f" category="list-text">Uma licença ativa do SnapMirror deve ser instalada.</block>
+  <block id="cb4d7a152cb523ddb41e8b55186ecaf9" category="list-text">Se o cluster estiver em suas instalações, você deverá ter uma conexão da sua rede corporativa com sua rede virtual na nuvem.  Normalmente, essa é uma conexão VPN.</block>
+  <block id="1fbce003d68708feb24931b9e6366f50" category="list-text">Os clusters ONTAP devem atender a requisitos adicionais de sub-rede, porta, firewall e cluster.</block>
+  <block id="d7bb556723e915c43fe4fd9b0f90d545" category="inline-link">Veja os pré-requisitos para peering de cluster na documentação do ONTAP</block>
+  <block id="97d76d6ad65338f9dc1e8196be488382" category="paragraph"><block ref="97d76d6ad65338f9dc1e8196be488382" category="inline-link-rx"></block></block>
+  <block id="4f473a2a941d4fd7b4a68e3cd98e934c" category="list-text">Requisitos específicos do Amazon FSx para ONTAP</block>
+  <block id="0b2859515841917b8dcb93767366e15a" category="list-text">Se o Cloud Volumes ONTAP fizer parte do relacionamento, garanta a conectividade entre as VPCs habilitando o peering de VPC ou usando um Transit Gateway.</block>
+  <block id="7cdb830daf27295ef13d47b3f05f431f" category="list-text">Se um cluster ONTAP local fizer parte do relacionamento, garanta a conectividade entre sua rede local e a VPC da AWS usando uma conexão Direct Connect ou VPN.</block>
+  <block id="94d63941f5733e2475f76dcc24cbaab4" category="section-title">Etapa 2: replicar dados entre sistemas</block>
+  <block id="ab180709f75f8b8d74709444b839ccd3" category="paragraph">Você pode replicar dados escolhendo uma replicação de dados única, que pode ajudar a mover dados de e para a nuvem, ou um agendamento recorrente, que pode ajudar na recuperação de desastres ou na retenção de longo prazo.</block>
+  <block id="c27deb5ada399336a287848889d2032c" category="list-text">No menu de navegação, selecione *Armazenamento &gt; Gerenciamento*.</block>
+  <block id="da9b02f648ef7bfd9330c1dbfda0bf3d" category="list-text">Na página Sistemas, selecione o sistema que contém o volume de origem, arraste-o para o sistema para o qual você deseja replicar o volume e selecione *Replicação*.</block>
+  <block id="2be8439d89ba35425f3565fe4d0cc2a1" category="paragraph">As etapas restantes fornecem um exemplo de como criar um relacionamento de sincronização entre o Cloud Volumes ONTAP ou clusters ONTAP locais.</block>
+  <block id="362a388c30edcb2f99cceb3fe86d98c1" category="list-text">*Configuração de peering de origem e destino*: Se esta página aparecer, selecione todos os LIFs entre clusters para o relacionamento de peers do cluster.</block>
+  <block id="bea31cd643e991ddda33528781bb08e5" category="paragraph">A rede intercluster deve ser configurada para que os pares de cluster tenham _conectividade full-mesh em pares_, o que significa que cada par de clusters em um relacionamento de pares de cluster tenha conectividade entre todos os seus LIFs intercluster.</block>
+  <block id="2de4794fb8257073e92d6ea494fd0157" category="paragraph">Essas páginas aparecem se um cluster ONTAP com vários LIFs for a origem ou o destino.</block>
+  <block id="a6e88d0494a8fa6f3ae3b6727b0d269a" category="list-text">*Seleção de volume de origem*: selecione o volume que você deseja replicar.</block>
+  <block id="36e07509be5c7f032ab917fdca1c3155" category="list-text">*Tipo de disco de destino e níveis*: se o destino for um sistema Cloud Volumes ONTAP , selecione o tipo de disco de destino e escolha se deseja habilitar o nível de dados.</block>
+  <block id="fffe1c574a9d13338bd57b8f437e8b38" category="list-text">*Nome do volume de destino*: especifique o nome do volume de destino e escolha o agregado de destino.</block>
+  <block id="a72bddbb2c5ec4276f61eb5d4c72d29e" category="paragraph">Se o destino for um cluster ONTAP , você também deverá especificar a VM de armazenamento de destino.</block>
+  <block id="70b03b0b5fddb323cd5727f0aff116da" category="list-text">*Taxa máxima de transferência*: especifique a taxa máxima (em megabytes por segundo) na qual os dados podem ser transferidos.</block>
+  <block id="c4d4c57bab69ea2730de16df7ca7f541" category="paragraph">Você deve limitar a taxa de transferência.  Uma taxa ilimitada pode impactar negativamente o desempenho de outros aplicativos e pode afetar o desempenho da sua internet.</block>
+  <block id="dbaed6b1eccf4f28c85c3bb48e1f4cfb" category="list-text">*Política de replicação*: escolha uma política padrão ou selecione *Políticas adicionais* e, em seguida, selecione uma das políticas avançadas.</block>
+  <block id="43b69288e2e4056e2603dc7b20958252" category="inline-link-macro">aprenda sobre políticas de replicação</block>
+  <block id="38ae0f8e71302f90ed2bd78cc3558be1" category="paragraph">Para obter ajuda,<block ref="aa986145ecc84d384c81421dbd7256f8" category="inline-link-macro-rx"></block> .</block>
+  <block id="94b8e29e9b4ae2edec5679fafc448461" category="inline-link-macro">aprenda como funcionam as políticas de backup</block>
+  <block id="0f6c5ee2302df44c3c3978e65291c20e" category="paragraph">Se você escolher uma política de backup personalizada (SnapVault), os rótulos associados à política deverão corresponder aos rótulos das cópias de instantâneo no volume de origem.  Para mais informações,<block ref="1da422ecee672d98d1632cce950d0eeb" category="inline-link-macro-rx"></block> .</block>
+  <block id="d3b2b050bb9494cae757b48c9e54e869" category="list-text">*Agendamento*: Escolha uma cópia única ou um agendamento recorrente.</block>
+  <block id="eab21f14d3f6250b2de779be87b8404e" category="paragraph">Vários cronogramas padrão estão disponíveis.  Se você quiser um agendamento diferente, crie um novo agendamento no cluster _destination_ usando o System Manager.</block>
+  <block id="a7727533d88ed468e2701beadd63abcb" category="list-text">*Revisar*: revise suas seleções e selecione *Ir*.</block>
+  <block id="b949688837512585d09125c0d7827ed8" category="paragraph">O NetApp Replication inicia o processo de replicação de dados.  Você pode visualizar detalhes sobre o relacionamento de volume do NetApp Replication.</block>
+  <block id="243263104c829e77835d632f591230d5" category="summary">Antes de abrir um caso de suporte com o suporte técnico da NetApp , você precisa adicionar uma conta do site de suporte da NetApp ao BlueXP e depois se registrar para obter suporte.</block>
+  <block id="42748df9eaa0be17ddc5cc1593cf57ab" category="doc">Registre-se para obter suporte</block>
+  <block id="ece19bab46695021f109a5e50f08bebe" category="paragraph">O registro de suporte é necessário para receber suporte técnico específico para o BlueXP e suas soluções e serviços de armazenamento. O registro de suporte também é necessário para habilitar fluxos de trabalho importantes para sistemas Cloud Volumes ONTAP .</block>
+  <block id="8a3d807608e632d188a288fc5f4aa7eb" category="paragraph">O registro para suporte não habilita o suporte da NetApp para um serviço de arquivo do provedor de nuvem. Para obter suporte técnico relacionado a um serviço de arquivo do provedor de nuvem, sua infraestrutura ou qualquer solução que use o serviço, consulte "Obter ajuda" na documentação do BlueXP para esse produto.</block>
+  <block id="0b0e252af8897fbe981ec6682d2aa33b" category="section-title">Visão geral do registro de suporte</block>
+  <block id="192054ad7601240a3e8be54cc5cc548e" category="paragraph">Existem duas formas de registro para ativar o direito ao suporte:</block>
+  <block id="29360bfcdbc91d3f1514c372b4585965" category="list-text">Registrando o número de série da sua conta BlueXP (seu número de série 960xxxxxxxxx de 20 dígitos localizado na página Recursos de suporte no BlueXP).</block>
+  <block id="23fdcbefa6d9cd877be7ceb7a18bb936" category="paragraph">Isso serve como seu único ID de assinatura de suporte para qualquer serviço dentro do BlueXP. Cada assinatura de suporte em nível de conta BlueXP deve ser registrada.</block>
+  <block id="55ff64467cd508971910145ab5d6b3b8" category="list-text">Registrando os números de série do Cloud Volumes ONTAP associados a uma assinatura no marketplace do seu provedor de nuvem (são números de série 909201xxxxxxxxx de 20 dígitos).</block>
+  <block id="67dbdeb11e22ea7def810bade59ce818" category="paragraph">Esses números de série são comumente chamados de _números de série PAYGO_ e são gerados pelo BlueXP no momento da implantação do Cloud Volumes ONTAP .</block>
+  <block id="28164bf9e881ddc9e7ff74744bfce180" category="paragraph">Registrar ambos os tipos de números de série habilita recursos como abertura de tickets de suporte e geração automática de casos. O registro é concluído adicionando contas do NetApp Support Site (NSS) ao BlueXP , conforme descrito abaixo.</block>
+  <block id="444b74bc81e823cc1c4c704219ad8ed3" category="section-title">Registre o BlueXP para suporte da NetApp</block>
+  <block id="b3bf31f8a918c712f26cdf493a908825" category="paragraph">Para se registrar para obter suporte e ativar o direito ao suporte, um usuário na sua organização BlueXP (ou conta) deve associar uma conta do Site de Suporte da NetApp ao seu login BlueXP . A maneira como você se registra para o suporte da NetApp depende se você já tem uma conta no NetApp Support Site (NSS).</block>
+  <block id="bf4c731c0ee7f60c8018ad8f96828dda" category="section-title">Cliente existente com uma conta NSS</block>
+  <block id="7e177185e7eddff33dd8f3aeb7551132" category="paragraph">Se você for um cliente da NetApp com uma conta NSS, basta se registrar para obter suporte pelo BlueXP.</block>
+  <block id="0307a12e5749f8dd930472ee78f69d2c" category="list-text">No canto superior direito do console BlueXP , selecione o ícone Configurações e selecione *Credenciais*.</block>
+  <block id="f19ab635e6d5f884a22ee4ce067fdbfd" category="list-text">Selecione *Credenciais do usuário*.</block>
+  <block id="0c788a722f31f8f0cf36539ee04615cf" category="list-text">Selecione *Adicionar credenciais NSS* e siga o prompt de autenticação do NetApp Support Site (NSS).</block>
+  <block id="cfc5506589d5a4d055e721267d5f0732" category="list-text">Para confirmar que o processo de registro foi bem-sucedido, selecione o ícone Ajuda e selecione *Suporte*.</block>
+  <block id="2ba7f9eae7a02f9c3ac0fc07517d1c48" category="paragraph">A página *Recursos* deve mostrar que sua organização BlueXP está registrada para suporte.</block>
+  <block id="759d32287efdf88cd8ac71dccc0ecf8d" category="inline-image-macro">Uma captura de tela que mostra um número de série da conta, uma caixa de seleção verde e o texto Registrado para suporte.</block>
+  <block id="4c441b388bebcddf8c08fb782095b864" category="paragraph"><block ref="4c441b388bebcddf8c08fb782095b864" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c05e530d1466e986d570cfe3f92656c3" category="paragraph">Observe que outros usuários do BlueXP não verão o mesmo status de registro de suporte se não tiverem associado uma conta do site de suporte da NetApp ao login do BlueXP . No entanto, isso não significa que sua organização BlueXP não esteja registrada para suporte. Desde que um usuário na organização tenha seguido essas etapas, sua organização foi registrada.</block>
+  <block id="1ff5aefce774ec72a211f2b3bb10b950" category="section-title">Cliente existente, mas sem conta NSS</block>
+  <block id="bdd862f49d428a850400bcf2f53cdaf2" category="paragraph">Se você já é cliente da NetApp com licenças e números de série, mas _nenhuma_ conta NSS, precisa criar uma conta NSS e associá-la ao seu login do BlueXP .</block>
+  <block id="5b2b7f628f804bcb786a097c7e45aa41" category="inline-link">Formulário de registro de usuário do site de suporte da NetApp</block>
+  <block id="0c4a8b62da9473fbd5401273c4f85ee0" category="list-text">Crie uma conta no site de suporte da NetApp preenchendo o<block ref="041bcb6d9bdf91f7d6ac92ae3a196e12" category="inline-link-rx"></block></block>
+  <block id="d61c9f72493817776f392db42ac446a2" category="list-text">Certifique-se de selecionar o Nível de usuário apropriado, que normalmente é * Cliente/Usuário final da NetApp *.</block>
+  <block id="5226d4ec1f4f81b740cbbd27635b441f" category="list-text">Certifique-se de copiar o número de série da conta BlueXP (960xxxx) usado acima para o campo de número de série. Isso acelerará o processamento da conta.</block>
+  <block id="0499bba105f8a891a2c671f1ba99dd34" category="list-text">Associe sua nova conta NSS ao seu login BlueXP concluindo as etapas abaixo<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="e9b1f53d6cabb3394833a4e102eb6a69" category="section-title">Novidade na NetApp</block>
+  <block id="c20c107d0d4eef6351660f3590324232" category="paragraph">Se você é novo na NetApp e não tem uma conta NSS, siga cada etapa abaixo.</block>
+  <block id="d889e6e7cc4c5509ab5b37f8fc894e46" category="list-text">No canto superior direito do console BlueXP , selecione o ícone Ajuda e selecione *Suporte*.</block>
+  <block id="b50f0a46135bcb7083b1f2f82032fc26" category="inline-image-macro">Uma captura de tela do menu Ajuda onde Suporte é a primeira opção listada</block>
+  <block id="e8d4092baef6680c6a35d5228ae31de2" category="paragraph"><block ref="e8d4092baef6680c6a35d5228ae31de2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2974170a8b1b5b4a2ac69aacd4c1c9c3" category="list-text">Localize o número de série do seu ID de conta na página de Registro de Suporte.</block>
+  <block id="379f9cd57d97013f3f7fdd24f692a0b1" category="paragraph"><block ref="379f9cd57d97013f3f7fdd24f692a0b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dd50e314c18933734174c1156dd9237f" category="inline-link">Site de registro de suporte da NetApp</block>
+  <block id="78f94e749b89d69dcbf3baff21ccb958" category="list-text">Navegar para<block ref="e1c4be66250fd76d5c52bfe2cb7daee2" category="inline-link-rx"></block> e selecione *Não sou um cliente registrado da NetApp *.</block>
+  <block id="d4f633ef130727b2776fa7f45024ca7d" category="list-text">Preencha os campos obrigatórios (aqueles com asteriscos vermelhos).</block>
+  <block id="1128fc8d5ec64880f4d49337ed798d31" category="list-text">No campo *Linha de produtos*, selecione *Cloud Manager* e, em seguida, selecione seu provedor de cobrança aplicável.</block>
+  <block id="50a1dc01b7312307c34a888071586955" category="list-text">Copie o número de série da sua conta da etapa 2 acima, conclua a verificação de segurança e confirme que você leu a Política Global de Privacidade de Dados da NetApp.</block>
+  <block id="3a24c87c9971d2011b4df223718f84b4" category="paragraph">Um e-mail é enviado imediatamente para a caixa de correio fornecida para finalizar esta transação segura. Não deixe de verificar sua caixa de spam caso o e-mail de validação não chegue em alguns minutos.</block>
+  <block id="03413baeca1ff7222737d8ce299bd4e8" category="list-text">Confirme a ação no e-mail.</block>
+  <block id="201080500e946070a2e4873042507c77" category="paragraph">A confirmação envia sua solicitação à NetApp e recomenda que você crie uma conta no site de suporte da NetApp .</block>
+  <block id="a2454703f88e5bf5b433ae850a87151b" category="list-text">Certifique-se de copiar o número de série da conta (960xxxx) usado acima para o campo de número de série. Isso acelerará o processamento.</block>
+  <block id="684375e279a289295b72a006d93e2c4c" category="paragraph">A NetApp entrará em contato com você durante esse processo. Este é um exercício de integração único para novos usuários.</block>
+  <block id="5cdee814e2d9ba3490a8f16d00c65759" category="paragraph">Depois de ter sua conta no site de suporte da NetApp , associe a conta ao seu login BlueXP concluindo as etapas em<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="3e616bae81890a6c8fae17c9b45af152" category="section-title">Credenciais associadas do NSS para suporte do Cloud Volumes ONTAP</block>
+  <block id="0ca08a23718c0a91743dd6c0146ca353" category="paragraph">A associação das credenciais do NetApp Support Site à sua organização BlueXP é necessária para habilitar os seguintes fluxos de trabalho principais para o Cloud Volumes ONTAP:</block>
+  <block id="a0518a10626dc11fd00e2d20265ad240" category="list-text">Registrando sistemas Cloud Volumes ONTAP de pagamento conforme o uso para suporte</block>
+  <block id="321aadf78ef73521712291b7aba6411f" category="paragraph">É necessário fornecer sua conta NSS para ativar o suporte para seu sistema e obter acesso aos recursos de suporte técnico da NetApp .</block>
+  <block id="d51b2b497db445a16b1c9583c1abbb59" category="list-text">Implantando o Cloud Volumes ONTAP quando você traz sua própria licença (BYOL)</block>
+  <block id="2ebfeabed40c2270d9fa8325080a4b3e" category="paragraph">É necessário fornecer sua conta NSS para que o BlueXP possa carregar sua chave de licença e habilitar a assinatura para o período que você adquiriu. Isso inclui atualizações automáticas para renovações de prazo.</block>
+  <block id="f5135b68b75a8404803a1eb438e40c5e" category="list-text">Atualizando o software Cloud Volumes ONTAP para a versão mais recente</block>
+  <block id="c81c8e01f5d906ae1ab0c5c606f06b05" category="paragraph">Associar credenciais do NSS à sua organização BlueXP é diferente da conta do NSS associada a um login de usuário do BlueXP .</block>
+  <block id="8166996cb4a59c147200d89a061bb49c" category="paragraph">Essas credenciais NSS estão associadas ao seu ID de organização BlueXP específico. Usuários que pertencem à organização BlueXP podem acessar essas credenciais em *Suporte &gt; Gerenciamento NSS*.</block>
+  <block id="328a2c1e7778e9edaf79d90c51409ac4" category="list-text">Se você tiver uma conta de nível de cliente, poderá adicionar uma ou mais contas NSS.</block>
+  <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">Se você tiver uma conta de parceiro ou revendedor, poderá adicionar uma ou mais contas NSS, mas elas não poderão ser adicionadas junto com contas de nível de cliente.</block>
+  <block id="c0e0b7ff0de9558404e9b77ece42948a" category="list-text">Selecione *Gerenciamento NSS &gt; Adicionar conta NSS*.</block>
+  <block id="85b9386ed443776127e099931d73448a" category="list-text">Quando solicitado, selecione *Continuar* para ser redirecionado para uma página de login da Microsoft.</block>
+  <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">A NetApp usa o Microsoft Entra ID como provedor de identidade para serviços de autenticação específicos para suporte e licenciamento.</block>
+  <block id="465ec6d5eafa3524c948c99d8bfcd306" category="list-text">Na página de login, forneça seu endereço de e-mail e senha registrados no Site de Suporte da NetApp para realizar o processo de autenticação.</block>
+  <block id="cbc6cc3bb022583403171b447b2a962c" category="paragraph">Essas ações permitem que o BlueXP use sua conta NSS para coisas como downloads de licenças, verificação de atualização de software e registros de suporte futuros.</block>
+  <block id="ec084bb25ed5b934c09b361069c246b2" category="list-text">A conta NSS deve ser uma conta de nível de cliente (não uma conta de convidado ou temporária). Você pode ter várias contas NSS em nível de cliente.</block>
+  <block id="27387009488fe78dcc7cb7e3e432792f" category="list-text">Só pode haver uma conta NSS se essa conta for uma conta de nível de parceiro. Se você tentar adicionar contas NSS em nível de cliente e existir uma conta em nível de parceiro, você receberá a seguinte mensagem de erro:</block>
+  <block id="d926847e4634e19a1aa7358becc0fa27" category="paragraph">"O tipo de cliente NSS não é permitido para esta conta, pois já existem usuários NSS de tipos diferentes."</block>
+  <block id="a04a3a5322782e8c18d0d64be7e1ccbc" category="paragraph">O mesmo é verdadeiro se você tiver contas NSS pré-existentes em nível de cliente e tentar adicionar uma conta em nível de parceiro.</block>
+  <block id="1afe8a81cfddc9fa9559e272bb6b9496" category="list-text">Após o login bem-sucedido, o NetApp armazenará o nome de usuário do NSS.</block>
+  <block id="1dcb63fd55c4d22e87cb32275b8cc808" category="inline-image-macro">Um ícone de três pontos horizontais</block>
+  <block id="0dfcbbbe02d3e96f8ad78782e8772587" category="paragraph">Este é um ID gerado pelo sistema que mapeia para seu e-mail. Na página *NSS Management*, você pode exibir seu e-mail do<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> menu.</block>
+  <block id="fc79de85a483938f72fbcb9822ec0ae3" category="list-text">Se você precisar atualizar seus tokens de credenciais de login, também há uma opção *Atualizar credenciais* no<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> menu.</block>
+  <block id="b14d512a3c64fb5df16f6721b0603c63" category="paragraph">Usar esta opção solicitará que você faça login novamente. Observe que o token para essas contas expira após 90 dias. Uma notificação será publicada para alertá-lo sobre isso.</block>
+  <block id="26f0e5e4108f2f2fedd1858b44bccd15" category="summary">Saiba o que há de novo no NetApp Replication.</block>
+  <block id="df214a6e34abc56f338b1b252a5e0fce" category="doc">Novidades no NetApp Replication</block>
+  <block id="a979b5c48541c64e234e1112b72bab61" category="paragraph">Saiba o que há de novo no NetApp Replication.</block>
+  <block id="a41dd7aa7d921f9f0881a705d3679e6c" category="section-title">06 de outubro de 2025</block>
+  <block id="f7ba76d5c9beab0576f118a6254843e9" category="section-title">18 de setembro de 2022</block>
+  <block id="3f10ba55f7b5ee2ce092504fcea72477" category="section-title">31 de julho de 2022</block>
+  <block id="c0c4e254eb7382750d30e5d2119f551b" category="section-title">02 de setembro de 2021</block>
+  <block id="8e156f2b915acbc65f2729eda74eef2c" category="section-title">05 de maio de 2021</block>
+  <block id="1473f0729c8bea54a5077a19ab764c47" category="section-title">Interface redesenhada</block>
+  <block id="86a27255f55f6fa957eba54a21d11659" category="paragraph">Redesenhamos o Replication para facilitar o uso e corresponder à aparência atual da interface do usuário.</block>
+  <block id="4e3407e1bf5525b18bbc78e73274b496" category="inline-image-macro">Uma captura de tela da guia Replicação redesenhada que mostra uma lista de relacionamentos de volume.</block>
+  <block id="083ac5b877ee1dbdd80a743097540008" category="paragraph"><block ref="083ac5b877ee1dbdd80a743097540008" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="279d4e41c00858c0d60b99ca08f46b19" category="sidebar">Documentação do NetApp Replication</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Começar</block>
+  <block id="aa03d16eacb954c7af08d5001cd67507" category="sidebar">Configurar replicação de dados</block>
+  <block id="bd22fcd65840658982df83d8db605b64" category="sidebar">Usar a NetApp Replication</block>
+  <block id="c27a58445f6be9881526a37e46bb7d26" category="sidebar">Gerenciar replicação de dados</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">Blogs e comunidade</block>
+  <block id="cc58d3a9b2264c4fd8cb1d3f61b90bdc" category="sidebar">NetApp Data Services</block>
+  <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">Comunidade NetApp</block>
+  <block id="8ed9a034348ffee8e1eefbbfe5127ca1" category="sidebar">Documentação de NetApp Replication</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notas de lançamento</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">O que há de novo</block>
+  <block id="d59048f21fd887ad520398ce677be586" category="sidebar">Saber mais</block>
+  <block id="87531525c3b816a3a29dbbcbcd9e58b1" category="sidebar">Saiba mais sobre políticas de replicação</block>
+  <block id="30926cdd94e56dd228449e15c0e4474c" category="sidebar">Saiba mais sobre políticas de backup</block>
+  <block id="0adc03eac86772ad2c75c8f140be417e" category="sidebar">Conhecimento e suporte</block>
+</blocks>

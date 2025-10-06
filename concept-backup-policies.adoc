@@ -14,7 +14,7 @@ summary: Ao contrário das políticas de espelho, as políticas de backup do Sna
 
 
 [role="lead"]
-Ao contrário das políticas de espelho, as políticas de backup (SnapVault) replicam cópias específicas de instantâneos para um volume de destino usando a Replicação do NetApp .  É importante entender como as políticas de backup funcionam se você quiser usar suas próprias políticas em vez das políticas padrão.
+Ao contrário das políticas de espelho, as políticas de backup (SnapVault) replicam cópias específicas de instantâneos para um volume de destino usando o NetApp Replication.  É importante entender como as políticas de backup funcionam se você quiser usar suas próprias políticas em vez das políticas padrão.
 
 
 

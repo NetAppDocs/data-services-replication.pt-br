@@ -4,7 +4,7 @@ permalink: concept-replication.html
 keywords: ontap, cluster, discover, manage, BlueXP, bluexp,hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, disaster recovery, DR, archive, archiving, retention, netapp replication 
 summary: O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que você tenha alta disponibilidade de dados e rápida replicação de dados em ambientes virtuais e tradicionais.  Quando você replica dados para sistemas de armazenamento NetApp e atualiza continuamente os dados secundários, seus dados são mantidos atualizados e permanecem disponíveis sempre que você precisar deles. Não são necessários servidores de replicação externos. 
 ---
-= Saiba mais sobre a replicação do NetApp
+= Saiba mais sobre a NetApp Replication
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -18,15 +18,15 @@ O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que vo
 
 
 
-== Console NetApp
+== NetApp Console
 
-A replicação do NetApp pode ser acessada por meio do console do NetApp .
+A NetApp Replication pode ser acessada por meio do NetApp Console.
 
 O NetApp Console fornece gerenciamento centralizado de serviços de armazenamento e dados da NetApp em ambientes locais e na nuvem em nível empresarial. O Console é necessário para acessar e usar os serviços de dados do NetApp . Como uma interface de gerenciamento, ele permite que você gerencie muitos recursos de armazenamento a partir de uma única interface. Os administradores do console podem controlar o acesso ao armazenamento e aos serviços de todos os sistemas da empresa.
 
 Você não precisa de uma licença ou assinatura para começar a usar o NetApp Console e só incorrerá em cobranças quando precisar implantar agentes do Console na sua nuvem para garantir a conectividade com seus sistemas de armazenamento ou serviços de dados do NetApp . No entanto, alguns serviços de dados da NetApp acessíveis pelo Console são licenciados ou baseados em assinatura.
 
-Saiba mais sobre o https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["Console NetApp"] .
+Saiba mais sobre o https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp Console"] .
 
 
 
@@ -103,9 +103,9 @@ O NetApp Replication oferece suporte a configurações de proteção de dados si
 
 == Replique dados usando o NetApp Backup and Recovery
 
-A partir da versão 3.9.31 do agente NetApp Console, o NetApp Backup and Recovery permite que você replique dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Portanto, se você planeja replicar dados para outros sistemas ONTAP e também deseja criar backups dos mesmos dados para armazenamento de objetos, você pode querer usar https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html["Backup e recuperação da NetApp"^] para que você possa gerenciar suas necessidades de proteção de dados com um único serviço.
+A partir da versão 3.9.31 do agente NetApp Console , o NetApp Backup and Recovery permite que você replique dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Portanto, se você planeja replicar dados para outros sistemas ONTAP e também deseja criar backups dos mesmos dados para armazenamento de objetos, você pode querer usar https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html["NetApp Backup and Recovery"^] para que você possa gerenciar suas necessidades de proteção de dados com um único serviço.
 
-Atualmente, a funcionalidade a seguir só é suportada no NetApp Replication, e não ao usar o recurso de replicação do NetApp Backup and Recovery.
+Atualmente, a funcionalidade a seguir só é suportada no NetApp Replication , não ao usar o recurso de replicação do NetApp Backup and Recovery.
 
 * Não há suporte para uma configuração em cascata onde a replicação ocorre do volume A para o volume B e depois do volume B para o volume C.
 * Não há suporte para replicação de dados de ou para o FSx para sistemas ONTAP .
