@@ -1,0 +1,15 @@
+= FSx para ONTAP como fonte de dados
+:allow-uri-read: 
+
+
+
+
+=== FSx para ONTAP como fonte de dados
+
+Agora você pode replicar dados de um sistema de arquivos Amazon FSx para ONTAP para os seguintes destinos:
+
+* Amazon FSx para ONTAP
+* Cluster ONTAP local
+
+
+https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"] .

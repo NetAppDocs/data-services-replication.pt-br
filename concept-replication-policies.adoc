@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: concept-replication-policies.html 
+keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, disaster recovery, DR 
+summary: Você pode precisar de ajuda para escolher uma política de replicação ao configurar a replicação de dados no NetApp Console.  Uma política de replicação define como o sistema de armazenamento replica dados de um volume de origem para um volume de destino. 
+---
+= Saiba mais sobre as políticas de replicação usadas no NetApp Replication
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Você pode precisar de ajuda para escolher uma política de replicação ao configurar a replicação de dados no NetApp Replication.  Uma política de replicação define como o sistema de armazenamento replica dados de um volume de origem para um volume de destino.
+
+
+
+== O que as políticas de replicação fazem
+
+O sistema operacional ONTAP cria automaticamente backups chamados cópias instantâneas.  Uma cópia instantânea é uma imagem somente leitura de um volume que captura o estado do sistema de arquivos em um determinado momento.
+
+Ao replicar dados entre sistemas, você replica cópias de instantâneos de um volume de origem para um volume de destino.  Uma política de replicação especifica quais cópias de instantâneos replicar do volume de origem para o volume de destino.
+
+
+TIP: As políticas de replicação também são chamadas de políticas de _proteção_ porque são alimentadas pelas tecnologias SnapMirror e SnapVault , que fornecem proteção de recuperação de desastres e backup e recuperação de disco para disco.
+
+A imagem a seguir mostra a relação entre cópias de snapshot e políticas de replicação:
+
+image:diagram_replication_policies.png["Esta ilustração mostra cópias de instantâneo em um volume de origem e uma política de replicação que especifica a replicação de todas ou cópias de instantâneo específicas do volume de origem para o volume de destino."]
+
+
+
+== Tipos de políticas de replicação
+
+Existem três tipos de políticas de replicação:
+
+* Uma política _Mirror_ replica cópias de snapshots recém-criadas para um volume de destino.
++
+Você pode usar essas cópias de instantâneo para proteger o volume de origem em preparação para recuperação de desastres ou para replicação de dados única.  Você pode ativar o volume de destino para acesso aos dados a qualquer momento.
+
+* Uma política de _Backup_ replica cópias específicas de instantâneos para um volume de destino e normalmente as retém por um período de tempo mais longo do que você faria no volume de origem.
++
+Você pode restaurar dados dessas cópias de instantâneos quando os dados forem corrompidos ou perdidos e mantê-los para conformidade com padrões e outros propósitos relacionados à governança.
+
+* Uma política de _Espelho e Backup_ fornece recuperação de desastres e retenção de longo prazo.
++
+Cada sistema inclui uma política padrão de Espelho e Backup, que funciona bem em muitas situações.  Se você achar que precisa de políticas personalizadas, você pode criar as suas próprias usando o Gerenciador de Sistemas.
+
+
+
+As imagens a seguir mostram a diferença entre as políticas de Espelho e Backup.  Uma política de espelho espelha as cópias de instantâneo disponíveis no volume de origem.
+
+image:diagram_replication_snapmirror.png["Esta ilustração mostra cópias de instantâneo em um volume de origem e um volume de destino espelhado que espelha o volume de origem."]
+
+Uma política de backup normalmente retém cópias de instantâneos por mais tempo do que elas são retidas no volume de origem:
+
+image:diagram_replication_snapvault.png["Esta ilustração mostra cópias de instantâneo em um volume de origem e um volume de destino de backup que inclui mais cópias de instantâneo porque o SnapVault retém cópias de instantâneo para retenção de longo prazo."]

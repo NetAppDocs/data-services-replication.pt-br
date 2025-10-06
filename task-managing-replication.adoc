@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: task-managing-replication.html 
+keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, source, destination, schedule, relationship, break, resync, max transfer, maximum transfer rate, rate, transfer rate, reverse resync, status, replication status, disaster recovery, DR, archive, archiving, retention 
+summary: Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados do NetApp Replication. 
+---
+= Gerenciar a replicação de dados no NetApp Replication
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados do NetApp Replication.
+
+.Passos
+. link:task-login-replication.html["Efetue login no NetApp Replication"] .
+. Revise o status dos relacionamentos de replicação de dados para verificar se eles estão íntegros.
++
+
+NOTE: Se o status de um relacionamento for inativo e o estado do espelho não for inicializado, você deverá inicializar o relacionamento do sistema de destino para que a replicação de dados ocorra de acordo com o cronograma definido.  Você pode inicializar o relacionamento usando o Gerenciador do Sistema ou a interface de linha de comando (CLI).  Esses estados podem aparecer quando o sistema de destino falha e depois volta a ficar online.
+
+. Selecione o menu de ações para um relacionamento de volume e escolha uma das ações disponíveis.
++
+A tabela a seguir descreve as ações disponíveis:
+
++
+[cols="15,85"]
+|===
+| Ação | Descrição 
+
+
+| Informação | Mostra detalhes sobre o relacionamento de volume: informações de transferência, informações da última transferência, detalhes sobre o volume e informações sobre a política de proteção atribuída ao relacionamento. 
+
+
+| Quebrar | Quebra o relacionamento entre os volumes de origem e destino e ativa o volume de destino para acesso a dados. Esta opção normalmente é usada quando o volume de origem não pode fornecer dados devido a eventos como corrupção de dados, exclusão acidental ou estado offline.https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["Aprenda como configurar um volume de destino para acesso a dados e reativar um volume de origem na documentação do ONTAP"^] 
+
+
+| Ressincronizar  a| 
+Restabelece um relacionamento interrompido entre volumes e retoma a replicação de dados de acordo com o cronograma definido.
+
+
+NOTE: Quando você ressincroniza os volumes, o conteúdo do volume de destino é substituído pelo conteúdo do volume de origem.
+
+Aprenda como executar uma ressincronização reversa, que ressincroniza os dados do volume de destino para o volume de origem, acesse o https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["Documentação do ONTAP"^] .
+
+
+
+| Ressincronização reversa | Inverte as funções dos volumes de origem e destino. O conteúdo do volume de origem original é substituído pelo conteúdo do volume de destino. Isso é útil quando você deseja reativar um volume de origem que ficou offline. Quaisquer dados gravados no volume de origem original entre a última replicação de dados e o momento em que o volume de origem foi desabilitado não são preservados. 
+
+
+| Editar agendamento | Permite que você escolha um agendamento diferente para replicação de dados. 
+
+
+| Editar Taxa Máxima de Transferência | Permite que você edite a taxa máxima (em quilobytes por segundo) na qual os dados podem ser transferidos. 
+
+
+| Atualizar | Inicia uma transferência incremental para atualizar o volume de destino. 
+
+
+| Excluir | Exclui o relacionamento de proteção de dados entre os volumes de origem e destino, o que significa que a replicação de dados não ocorre mais entre os volumes. Esta ação não ativa o volume de destino para acesso a dados. 
+|===
+
+
+.Resultado
+Depois de selecionar uma ação, o NetApp Replication atualiza o relacionamento ou a programação.

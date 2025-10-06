@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: concept-replication.html 
+keywords: ontap, cluster, discover, manage, BlueXP, bluexp,hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, disaster recovery, DR, archive, archiving, retention, netapp replication 
+summary: O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que você tenha alta disponibilidade de dados e rápida replicação de dados em ambientes virtuais e tradicionais.  Quando você replica dados para sistemas de armazenamento NetApp e atualiza continuamente os dados secundários, seus dados são mantidos atualizados e permanecem disponíveis sempre que você precisar deles. Não são necessários servidores de replicação externos. 
+---
+= Saiba mais sobre a replicação do NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O NetApp SnapMirror replica dados em alta velocidade via LAN ou WAN, para que você tenha alta disponibilidade de dados e rápida replicação de dados em ambientes virtuais e tradicionais.  Ao replicar dados para sistemas de armazenamento NetApp usando o NetApp Replication e atualizar continuamente os dados secundários, seus dados são mantidos atualizados e permanecem disponíveis sempre que você precisar deles. Não são necessários servidores de replicação externos.
+
+
+
+== Console NetApp
+
+A replicação do NetApp pode ser acessada por meio do console do NetApp .
+
+O NetApp Console fornece gerenciamento centralizado de serviços de armazenamento e dados da NetApp em ambientes locais e na nuvem em nível empresarial. O Console é necessário para acessar e usar os serviços de dados do NetApp . Como uma interface de gerenciamento, ele permite que você gerencie muitos recursos de armazenamento a partir de uma única interface. Os administradores do console podem controlar o acesso ao armazenamento e aos serviços de todos os sistemas da empresa.
+
+Você não precisa de uma licença ou assinatura para começar a usar o NetApp Console e só incorrerá em cobranças quando precisar implantar agentes do Console na sua nuvem para garantir a conectividade com seus sistemas de armazenamento ou serviços de dados do NetApp . No entanto, alguns serviços de dados da NetApp acessíveis pelo Console são licenciados ou baseados em assinatura.
+
+Saiba mais sobre o https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["Console NetApp"] .
+
+
+
+== Características
+
+* Replique dados entre sistemas de armazenamento ONTAP para dar suporte a backup e recuperação de desastres na nuvem ou entre nuvens.
+* Garanta a confiabilidade do seu ambiente de DR com alta disponibilidade.
+* A replicação eficiente em nível de bloco entre armazenamento ONTAP é rápida e eficiente, com pontos de recuperação granulares para DR e backup.
+
+
+
+
+== Custo
+
+A NetApp não cobra pelo uso do NetApp Replication, mas você precisará verificar com seu provedor de nuvem as taxas de entrada e saída de dados aplicáveis.
+
+
+
+== Sistemas suportados
+
+O NetApp Replication permite a replicação de dados entre os seguintes tipos de sistemas.
+
+[cols="30,30"]
+|===
+| Sistema de origem | Sistemas de destino suportados 
+
+
+| Cloud Volumes ONTAP  a| 
+* Amazon FSx para ONTAP
+* Cloud Volumes ONTAP
+* Cluster ONTAP local
+
+
+
+
+| Cluster ONTAP local  a| 
+* Amazon FSx para ONTAP
+* Cloud Volumes ONTAP
+* Cluster ONTAP local
+
+
+
+
+| Amazon FSx para ONTAP  a| 
+* Amazon FSx para ONTAP
+* Cloud Volumes ONTAP
+* Cluster ONTAP local
+
+
+|===
+
+
+== Como funciona a replicação de dados
+
+O NetApp Replication simplifica a replicação de dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Você só precisa identificar o volume de origem e o volume de destino e, em seguida, escolher uma política e um agendamento de replicação.
+
+Para o Cloud Volumes ONTAP, o NetApp Replication compra os discos necessários, configura relacionamentos, aplica a política de replicação e, em seguida, inicia a transferência de linha de base entre os volumes.
+
+
+NOTE: A transferência de linha de base inclui uma cópia completa dos dados de origem.  Transferências subsequentes contêm cópias diferenciais dos dados de origem.
+
+
+
+== Configurações de proteção de dados suportadas
+
+O NetApp Replication oferece suporte a configurações de proteção de dados simples, em fanout e em cascata:
+
+* Em uma configuração simples, a replicação ocorre do volume A para o volume B.
+* Em uma configuração fanout, a replicação ocorre do volume A para vários destinos.
+* Em uma configuração em cascata, a replicação ocorre do volume A para o volume B e do volume B para o volume C.
+
+
+
+
+== Replique dados usando o NetApp Backup and Recovery
+
+A partir da versão 3.9.31 do agente NetApp Console, o NetApp Backup and Recovery permite que você replique dados entre volumes em sistemas ONTAP separados usando as tecnologias SnapMirror e SnapVault .  Portanto, se você planeja replicar dados para outros sistemas ONTAP e também deseja criar backups dos mesmos dados para armazenamento de objetos, você pode querer usar https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html["Backup e recuperação da NetApp"^] para que você possa gerenciar suas necessidades de proteção de dados com um único serviço.
+
+Atualmente, a funcionalidade a seguir só é suportada no NetApp Replication, e não ao usar o recurso de replicação do NetApp Backup and Recovery.
+
+* Não há suporte para uma configuração em cascata onde a replicação ocorre do volume A para o volume B e depois do volume B para o volume C.
+* Não há suporte para replicação de dados de ou para o FSx para sistemas ONTAP .
+* Não há suporte para criar uma replicação única de um volume.
+
+
+Portanto, se você precisar de alguma dessas funcionalidades, use o NetApp Replication.
