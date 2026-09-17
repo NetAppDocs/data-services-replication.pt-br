@@ -16,8 +16,16 @@ summary: Depois de configurar a replicação de dados entre dois sistemas, você
 [role="lead"]
 Depois de configurar a replicação de dados entre dois sistemas, você pode gerenciar o cronograma e o relacionamento da replicação de dados no NetApp Replication.
 
+Os relacionamentos de replicação com sistemas de arquivos FSx for ONTAP como origem ou destino são gerenciados no NetApp Workload Factory. Você pode gerenciar esses relacionamentos na página de sistemas do NetApp Console, selecionando o sistema de arquivos FSx for ONTAP.
+
 .Passos
 . link:task-login-replication.html["Efetue login no NetApp Replication"] .
++
+Continue para a etapa 2 para gerenciar relacionamentos de replicação não-FSx para o ONTAP.
+
++
+Para gerenciar os relacionamentos de replicação com o sistema de arquivos FSx for ONTAP, após fazer login no NetApp Console, acesse *Storage* > *Management* > *Systems*. Em seguida, selecione o sistema de arquivos FSx for ONTAP. Agora você está no NetApp Workload Factory, na tela de recursos do FSx for ONTAP. Selecione a guia *Replication relationships* para visualizar e gerenciar os relacionamentos de replicação do sistema de arquivos.
+
 . Revise o status dos relacionamentos de replicação de dados para verificar se eles estão íntegros.
 +
 

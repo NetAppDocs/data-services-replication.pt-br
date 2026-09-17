@@ -18,6 +18,7 @@ Usando o NetApp Replication, replique dados entre sistemas ONTAP escolhendo uma 
 
 
 
+[[step-1-review-data-replication-requirements]]
 == Etapa 1: Revisar os requisitos de replicação de dados
 
 Antes de poder replicar dados, você deve confirmar se os requisitos específicos são atendidos para o Cloud Volumes ONTAP, clusters ONTAP locais ou Amazon FSx for ONTAP.
@@ -25,10 +26,10 @@ Antes de poder replicar dados, você deve confirmar se os requisitos específico
 sistemas:: Se você ainda não fez isso, precisa criar os sistemas para a origem e o destino no relacionamento de replicação de dados.
 +
 --
-* https://docs.netapp.com/us-en/bluexp-fsx-ontap/start/task-getting-started-fsx.html["Crie um sistema Amazon FSx para ONTAP"^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-overview-cvo.html["Crie um sistema Cloud Volumes ONTAP"^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-adding-systems.html["Adicionar sistemas Cloud Volumes ONTAP existentes"^]
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP"^]
+* https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/task-getting-started-fsx.html["Crie um sistema Amazon FSx para ONTAP"^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/concept-overview-cvo.html["Crie um sistema Cloud Volumes ONTAP"^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-adding-systems.html["Adicionar sistemas Cloud Volumes ONTAP existentes"^]
+* https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP"^]
 
 
 --
@@ -74,6 +75,7 @@ Requisitos específicos do Amazon FSx para ONTAP::
 
 
 
+[[step-2-replicate-data-between-systems]]
 == Etapa 2: replicar dados entre sistemas
 
 Você pode replicar dados escolhendo uma replicação de dados única, que pode ajudar a mover dados de e para a nuvem, ou um agendamento recorrente, que pode ajudar na recuperação de desastres ou na retenção de longo prazo.

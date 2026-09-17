@@ -18,6 +18,7 @@ Ao contrário das políticas de espelho, as políticas de backup (SnapVault) rep
 
 
 
+[[understanding-the-relationship-between-snapshot-copy-labels-and-backup-policies]]
 == Compreendendo a relação entre rótulos de cópia de snapshot e políticas de backup
 
 Uma política de snapshot define como o sistema cria cópias de snapshot de volumes.  A política especifica quando criar as cópias de instantâneo, quantas cópias reter e como rotulá-las.  Por exemplo, um sistema pode criar uma cópia instantânea todos os dias às 00h10, reter as duas cópias mais recentes e rotulá-las como "diárias".
@@ -30,6 +31,7 @@ image:diagram_replication_snapvault_policy.png["Esta ilustração mostra uma pol
 
 
 
+[[default-policies-and-custom-policies]]
 == Políticas padrão e políticas personalizadas
 
 A política de snapshot padrão cria cópias de snapshot por hora, diariamente e semanalmente, retendo seis cópias de snapshot por hora, duas diariamente e duas semanalmente.

@@ -18,6 +18,7 @@ Você pode precisar de ajuda para escolher uma política de replicação ao conf
 
 
 
+[[what-replication-policies-do]]
 == O que as políticas de replicação fazem
 
 O sistema operacional ONTAP cria automaticamente backups chamados cópias instantâneas.  Uma cópia instantânea é uma imagem somente leitura de um volume que captura o estado do sistema de arquivos em um determinado momento.
@@ -33,6 +34,7 @@ image:diagram_replication_policies.png["Esta ilustração mostra cópias de inst
 
 
 
+[[types-of-replication-policies]]
 == Tipos de políticas de replicação
 
 Existem três tipos de políticas de replicação:

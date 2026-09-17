@@ -18,40 +18,61 @@ Saiba o que há de novo no NetApp Replication.
 
 
 
+[[13-april-2026]]
+== 13 de abril de 2026
+
+
+
+[[replication-management-for-existing-relationships-with-fsx-for-ontap]]
+=== Gerenciamento de replicação para relacionamentos existentes com FSx para ONTAP
+
+O gerenciamento de relacionamento de replicação para sistemas de arquivos FSx for ONTAP como origem ou destino agora está no NetApp Workload Factory.
+
+link:https://docs.netapp.com/us-en/data-services-replication/task-managing-replication.html["Gerenciar replicação de dados"]
+
+
+
+[[06-october-2025]]
 == 06 de outubro de 2025
 
 
 
+[[bluexp-replication-is-now-netapp-replication]]
 === A BlueXP replication agora é NetApp Replication
 
 A BlueXP replication foi renomeada para NetApp Replication.
 
 
 
+[[bluexp-is-now-netapp-console]]
 === BlueXP agora é NetApp Console
 
 O NetApp Console, criado com base na base aprimorada e reestruturada do BlueXP , fornece gerenciamento centralizado do armazenamento NetApp e do NetApp Data Services em ambientes locais e na nuvem em nível empresarial, fornecendo insights em tempo real, fluxos de trabalho mais rápidos e administração simplificada, que é altamente segura e compatível.
 
-Para obter detalhes sobre o que mudou, consulte olink:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["Notas de versão do NetApp Console"] .
+Para obter detalhes sobre o que mudou, consulte o link:https://docs.netapp.com/us-en/console-relnotes/index.html["Notas de versão do NetApp Console"].
 
 
 
+[[18-september-2022]]
 == 18 de setembro de 2022
 
 
 
+[[fsx-for-ontap-to-cloud-volumes-ontap]]
 === FSx para ONTAP para Cloud Volumes ONTAP
 
 Agora você pode replicar dados de um sistema de arquivos Amazon FSx for ONTAP para o Cloud Volumes ONTAP.
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"].
 
 
 
+[[31-july-2022]]
 == 31 de julho de 2022
 
 
 
+[[fsx-for-ontap-as-the-data-source]]
 === FSx para ONTAP como fonte de dados
 
 Agora você pode replicar dados de um sistema de arquivos Amazon FSx para ONTAP para os seguintes destinos:
@@ -60,28 +81,30 @@ Agora você pode replicar dados de um sistema de arquivos Amazon FSx para ONTAP 
 * Cluster ONTAP local
 
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"].
 
 
 
+[[02-september-2021]]
 == 02 de setembro de 2021
 
 
 
+[[support-for-amazon-fsx-for-ontap]]
 === Suporte para Amazon FSx para ONTAP
 
 Agora você pode replicar dados de um sistema Cloud Volumes ONTAP ou de um cluster ONTAP local para um sistema de arquivos Amazon FSx for ONTAP .
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["Aprenda a configurar a replicação de dados"].
 
 
 
+[[05-may-2021]]
 == 05 de maio de 2021
 
 
 
+[[redesigned-interface]]
 === Interface redesenhada
 
 Redesenhamos o Replication para facilitar o uso e corresponder à aparência atual da interface do usuário.
-
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-replication/main/media/replication.gif["Uma captura de tela da guia Replicação redesenhada que mostra uma lista de relacionamentos de volume."]
