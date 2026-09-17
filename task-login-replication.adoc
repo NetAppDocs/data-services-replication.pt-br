@@ -20,9 +20,6 @@ Para acessar o Console, você pode usar suas credenciais do site de suporte da N
 
 .Passos
 . Abra um navegador da web e vá para o https://console.netapp.com/["NetApp Console"^] .
-+
-A página de login do NetApp Console é exibida.
-
 . Efetue login no Console.
 . Na navegação à esquerda do Console, selecione *Proteção* > *Replicação*.
 

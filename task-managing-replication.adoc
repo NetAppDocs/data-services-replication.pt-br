@@ -29,7 +29,7 @@ Para gerenciar os relacionamentos de replicação com o sistema de arquivos FSx 
 . Revise o status dos relacionamentos de replicação de dados para verificar se eles estão íntegros.
 +
 
-NOTE: Se o status de um relacionamento for inativo e o estado do espelho não for inicializado, você deverá inicializar o relacionamento do sistema de destino para que a replicação de dados ocorra de acordo com o cronograma definido.  Você pode inicializar o relacionamento usando o Gerenciador do Sistema ou a interface de linha de comando (CLI).  Esses estados podem aparecer quando o sistema de destino falha e depois volta a ficar online.
+NOTE: Se o status de uma relação do SnapMirror for ocioso e o estado de espelhamento não estiver inicializado, você deve inicializar a relação do SnapMirror a partir do sistema de destino para que a replicação de dados ocorra de acordo com o cronograma definido. Você pode inicializar a relação do SnapMirror usando o System Manager ou a interface de linha de comando (CLI). Esses estados podem aparecer quando o sistema de destino falha e depois volta a ficar online.
 
 . Selecione o menu de ações para um relacionamento de volume e escolha uma das ações disponíveis.
 +
@@ -69,7 +69,12 @@ Aprenda como executar uma ressincronização reversa, que ressincroniza os dados
 | Atualizar | Inicia uma transferência incremental para atualizar o volume de destino. 
 
 
-| Excluir | Exclui o relacionamento de proteção de dados entre os volumes de origem e destino, o que significa que a replicação de dados não ocorre mais entre os volumes.  Esta ação não ativa o volume de destino para acesso a dados. 
+| Excluir  a| 
+Exclua a relação de proteção de dados entre os volumes de origem e destino. Isso encerra a replicação de dados entre os volumes, exclui a relação do SnapMirror do site de destino e libera a relação do site de origem.
+
+
+NOTE: A exclusão da relação do SnapMirror também interrompe a relação do SnapMirror, o que faz com que o volume de destino se torne temporariamente o site primário para operações de leitura/gravação, garantindo que o destino possa ser usado de forma independente após a remoção da replicação.
+
 |===
 
 

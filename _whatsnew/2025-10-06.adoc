@@ -14,6 +14,6 @@ A BlueXP replication foi renomeada para NetApp Replication.
 [[bluexp-is-now-netapp-console]]
 === BlueXP agora é NetApp Console
 
-O NetApp Console, criado com base na base aprimorada e reestruturada do BlueXP , fornece gerenciamento centralizado do armazenamento NetApp e do NetApp Data Services em ambientes locais e na nuvem em nível empresarial, fornecendo insights em tempo real, fluxos de trabalho mais rápidos e administração simplificada, que é altamente segura e compatível.
+O NetApp Console, construído sobre a base aprimorada e reestruturada do BlueXP, oferece gerenciamento centralizado de armazenamento NetApp e NetApp Data Services em ambientes locais e em nuvem com nível empresarial—proporcionando insights em tempo real, fluxos de trabalho mais rápidos e administração simplificada, altamente segura e em conformidade.
 
 Para obter detalhes sobre o que mudou, consulte o link:https://docs.netapp.com/us-en/console-relnotes/index.html["Notas de versão do NetApp Console"].

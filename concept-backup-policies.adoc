@@ -27,7 +27,7 @@ Uma política de backup inclui regras que especificam quais cópias de instantâ
 
 Por exemplo, uma política de backup que inclui os rótulos "diário" e "semanal" resulta na replicação de cópias de instantâneos que incluem apenas esses rótulos.  Nenhuma outra cópia de instantâneo é replicada, conforme mostrado na imagem a seguir:
 
-image:diagram_replication_snapvault_policy.png["Esta ilustração mostra uma política de snapshot, um volume de origem, as cópias de snapshot criadas a partir da política de snapshot e, em seguida, a replicação dessas cópias de snapshot para um volume de destino com base em uma política de backup, que especifica a replicação de cópias de snapshot com os rótulos \"diário\" e \"semanal\""]
+image:diagram_replication_snapvault_policy.png["Uma ilustração mostrando uma política de snapshot, um volume de origem, as cópias de snapshot criadas a partir da política de snapshot e, em seguida, a replicação dessas cópias de snapshot para um volume de destino com base em uma política de backup, que especifica a replicação de cópias de snapshot com os rótulos \"daily\" e \"weekly\""]
 
 
 
